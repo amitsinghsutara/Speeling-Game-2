@@ -1,0 +1,4276 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "skill": "CVC, short vowels",
+      "wordCount": 25
+    },
+    {
+      "level": 2,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "wordCount": 25
+    },
+    {
+      "level": 3,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "wordCount": 25
+    },
+    {
+      "level": 4,
+      "skill": "Silent-e (CVCe) long vowels",
+      "wordCount": 20
+    },
+    {
+      "level": 5,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "wordCount": 30
+    },
+    {
+      "level": 6,
+      "skill": "R-controlled vowels and diphthongs",
+      "wordCount": 20
+    },
+    {
+      "level": 7,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "wordCount": 20
+    },
+    {
+      "level": 8,
+      "skill": "Inflections and common suffixes",
+      "wordCount": 15
+    },
+    {
+      "level": 9,
+      "skill": "Multisyllable words (syllable types)",
+      "wordCount": 10
+    },
+    {
+      "level": 10,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "wordCount": 10
+    }
+  ],
+  "foilTypeLabels": {
+    "IC": "Initial-consonant substitution",
+    "FC": "Final-consonant substitution",
+    "V": "Vowel substitution",
+    "VIS": "Visual-confusable letter",
+    "OM": "Omission",
+    "DIG": "Digraph confusion",
+    "TR": "Transposition / reversal",
+    "PH": "Pseudohomophone (phonologically plausible misspelling)",
+    "REG": "Regularization",
+    "OVR": "Over-generalization / wrong pattern",
+    "DBL": "Doubling error",
+    "INS": "Insertion",
+    "L1-RL": "L1 transfer: /r/-/l/ confusion",
+    "L1-VD": "L1 transfer: final devoicing",
+    "L1-PRO": "L1 transfer: prothetic vowel before s-cluster",
+    "L1-EPN": "L1 transfer: epenthesis in a cluster",
+    "L1-TH": "L1 transfer: th substitution",
+    "L1-VOW": "L1 transfer: short/long vowel merger"
+  },
+  "questions": [
+    {
+      "level": 1,
+      "item": 1,
+      "sequence": 1,
+      "skill": "CVC, short vowels",
+      "target": "sat",
+      "foils": [
+        {
+          "word": "sit",
+          "type": "V"
+        },
+        {
+          "word": "sap",
+          "type": "FC"
+        },
+        {
+          "word": "hat",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 2,
+      "sequence": 2,
+      "skill": "CVC, short vowels",
+      "target": "mat",
+      "foils": [
+        {
+          "word": "met",
+          "type": "V"
+        },
+        {
+          "word": "map",
+          "type": "FC"
+        },
+        {
+          "word": "fat",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 3,
+      "sequence": 3,
+      "skill": "CVC, short vowels",
+      "target": "cat",
+      "foils": [
+        {
+          "word": "cot",
+          "type": "V"
+        },
+        {
+          "word": "cap",
+          "type": "FC"
+        },
+        {
+          "word": "bat",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 4,
+      "sequence": 4,
+      "skill": "CVC, short vowels",
+      "target": "map",
+      "foils": [
+        {
+          "word": "mop",
+          "type": "V"
+        },
+        {
+          "word": "mat",
+          "type": "FC"
+        },
+        {
+          "word": "nap",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 5,
+      "sequence": 5,
+      "skill": "CVC, short vowels",
+      "target": "sit",
+      "foils": [
+        {
+          "word": "sat",
+          "type": "V"
+        },
+        {
+          "word": "sip",
+          "type": "FC"
+        },
+        {
+          "word": "fit",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 6,
+      "sequence": 6,
+      "skill": "CVC, short vowels",
+      "target": "pin",
+      "foils": [
+        {
+          "word": "pan",
+          "type": "V"
+        },
+        {
+          "word": "pit",
+          "type": "FC"
+        },
+        {
+          "word": "tin",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 7,
+      "sequence": 7,
+      "skill": "CVC, short vowels",
+      "target": "tip",
+      "foils": [
+        {
+          "word": "tap",
+          "type": "V"
+        },
+        {
+          "word": "tin",
+          "type": "FC"
+        },
+        {
+          "word": "dip",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 8,
+      "sequence": 8,
+      "skill": "CVC, short vowels",
+      "target": "dig",
+      "foils": [
+        {
+          "word": "dog",
+          "type": "V"
+        },
+        {
+          "word": "dip",
+          "type": "FC"
+        },
+        {
+          "word": "pig",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 9,
+      "sequence": 9,
+      "skill": "CVC, short vowels",
+      "target": "pot",
+      "foils": [
+        {
+          "word": "pit",
+          "type": "V"
+        },
+        {
+          "word": "pop",
+          "type": "FC"
+        },
+        {
+          "word": "hot",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 10,
+      "sequence": 10,
+      "skill": "CVC, short vowels",
+      "target": "hot",
+      "foils": [
+        {
+          "word": "hit",
+          "type": "V"
+        },
+        {
+          "word": "hop",
+          "type": "FC"
+        },
+        {
+          "word": "dot",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 11,
+      "sequence": 11,
+      "skill": "CVC, short vowels",
+      "target": "mop",
+      "foils": [
+        {
+          "word": "map",
+          "type": "V"
+        },
+        {
+          "word": "mob",
+          "type": "FC"
+        },
+        {
+          "word": "top",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 12,
+      "sequence": 12,
+      "skill": "CVC, short vowels",
+      "target": "cup",
+      "foils": [
+        {
+          "word": "cap",
+          "type": "V"
+        },
+        {
+          "word": "cub",
+          "type": "FC"
+        },
+        {
+          "word": "pup",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 13,
+      "sequence": 13,
+      "skill": "CVC, short vowels",
+      "target": "sun",
+      "foils": [
+        {
+          "word": "sin",
+          "type": "V"
+        },
+        {
+          "word": "sub",
+          "type": "FC"
+        },
+        {
+          "word": "fun",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 14,
+      "sequence": 14,
+      "skill": "CVC, short vowels",
+      "target": "bug",
+      "foils": [
+        {
+          "word": "beg",
+          "type": "V"
+        },
+        {
+          "word": "bud",
+          "type": "FC"
+        },
+        {
+          "word": "dug",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 15,
+      "sequence": 15,
+      "skill": "CVC, short vowels",
+      "target": "net",
+      "foils": [
+        {
+          "word": "nut",
+          "type": "V"
+        },
+        {
+          "word": "nep",
+          "type": "FC"
+        },
+        {
+          "word": "pet",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 16,
+      "sequence": 16,
+      "skill": "CVC, short vowels",
+      "target": "pen",
+      "foils": [
+        {
+          "word": "pan",
+          "type": "V"
+        },
+        {
+          "word": "pet",
+          "type": "FC"
+        },
+        {
+          "word": "men",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 17,
+      "sequence": 17,
+      "skill": "CVC, short vowels",
+      "target": "red",
+      "foils": [
+        {
+          "word": "rid",
+          "type": "V"
+        },
+        {
+          "word": "ret",
+          "type": "FC"
+        },
+        {
+          "word": "led",
+          "type": "L1-RL"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 18,
+      "sequence": 18,
+      "skill": "CVC, short vowels",
+      "target": "bed",
+      "foils": [
+        {
+          "word": "bad",
+          "type": "V"
+        },
+        {
+          "word": "ded",
+          "type": "VIS"
+        },
+        {
+          "word": "bet",
+          "type": "L1-VD"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 19,
+      "sequence": 19,
+      "skill": "CVC, short vowels",
+      "target": "fan",
+      "foils": [
+        {
+          "word": "fin",
+          "type": "V"
+        },
+        {
+          "word": "fat",
+          "type": "FC"
+        },
+        {
+          "word": "van",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 20,
+      "sequence": 20,
+      "skill": "CVC, short vowels",
+      "target": "dog",
+      "foils": [
+        {
+          "word": "dig",
+          "type": "V"
+        },
+        {
+          "word": "dot",
+          "type": "FC"
+        },
+        {
+          "word": "bog",
+          "type": "VIS"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 21,
+      "sequence": 21,
+      "skill": "CVC, short vowels",
+      "target": "lip",
+      "foils": [
+        {
+          "word": "lap",
+          "type": "V"
+        },
+        {
+          "word": "lit",
+          "type": "FC"
+        },
+        {
+          "word": "rip",
+          "type": "L1-RL"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 22,
+      "sequence": 22,
+      "skill": "CVC, short vowels",
+      "target": "hen",
+      "foils": [
+        {
+          "word": "hin",
+          "type": "V"
+        },
+        {
+          "word": "hem",
+          "type": "FC"
+        },
+        {
+          "word": "ten",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 23,
+      "sequence": 23,
+      "skill": "CVC, short vowels",
+      "target": "run",
+      "foils": [
+        {
+          "word": "ran",
+          "type": "V"
+        },
+        {
+          "word": "rub",
+          "type": "FC"
+        },
+        {
+          "word": "lun",
+          "type": "L1-RL"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 24,
+      "sequence": 24,
+      "skill": "CVC, short vowels",
+      "target": "jam",
+      "foils": [
+        {
+          "word": "jum",
+          "type": "V"
+        },
+        {
+          "word": "jab",
+          "type": "FC"
+        },
+        {
+          "word": "ham",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "item": 25,
+      "sequence": 25,
+      "skill": "CVC, short vowels",
+      "target": "top",
+      "foils": [
+        {
+          "word": "tip",
+          "type": "V"
+        },
+        {
+          "word": "tob",
+          "type": "FC"
+        },
+        {
+          "word": "hop",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 26,
+      "sequence": 1,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "stop",
+      "foils": [
+        {
+          "word": "sop",
+          "type": "OM"
+        },
+        {
+          "word": "step",
+          "type": "V"
+        },
+        {
+          "word": "istop",
+          "type": "L1-PRO"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 27,
+      "sequence": 2,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "frog",
+      "foils": [
+        {
+          "word": "fog",
+          "type": "OM"
+        },
+        {
+          "word": "frug",
+          "type": "V"
+        },
+        {
+          "word": "ferog",
+          "type": "L1-EPN"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 28,
+      "sequence": 3,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "drum",
+      "foils": [
+        {
+          "word": "dum",
+          "type": "OM"
+        },
+        {
+          "word": "dram",
+          "type": "V"
+        },
+        {
+          "word": "drun",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 29,
+      "sequence": 4,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "flag",
+      "foils": [
+        {
+          "word": "lag",
+          "type": "OM"
+        },
+        {
+          "word": "flig",
+          "type": "V"
+        },
+        {
+          "word": "flab",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 30,
+      "sequence": 5,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "clap",
+      "foils": [
+        {
+          "word": "cap",
+          "type": "OM"
+        },
+        {
+          "word": "clip",
+          "type": "V"
+        },
+        {
+          "word": "clab",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 31,
+      "sequence": 6,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "crab",
+      "foils": [
+        {
+          "word": "cab",
+          "type": "OM"
+        },
+        {
+          "word": "crib",
+          "type": "V"
+        },
+        {
+          "word": "grab",
+          "type": "IC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 32,
+      "sequence": 7,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "swim",
+      "foils": [
+        {
+          "word": "sim",
+          "type": "OM"
+        },
+        {
+          "word": "swam",
+          "type": "V"
+        },
+        {
+          "word": "swin",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 33,
+      "sequence": 8,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "snap",
+      "foils": [
+        {
+          "word": "sap",
+          "type": "OM"
+        },
+        {
+          "word": "snip",
+          "type": "V"
+        },
+        {
+          "word": "isnap",
+          "type": "L1-PRO"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 34,
+      "sequence": 9,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "plan",
+      "foils": [
+        {
+          "word": "pan",
+          "type": "OM"
+        },
+        {
+          "word": "plin",
+          "type": "V"
+        },
+        {
+          "word": "plam",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 35,
+      "sequence": 10,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "trip",
+      "foils": [
+        {
+          "word": "tip",
+          "type": "OM"
+        },
+        {
+          "word": "trap",
+          "type": "V"
+        },
+        {
+          "word": "trib",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 36,
+      "sequence": 11,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "skip",
+      "foils": [
+        {
+          "word": "sip",
+          "type": "OM"
+        },
+        {
+          "word": "skap",
+          "type": "V"
+        },
+        {
+          "word": "iskip",
+          "type": "L1-PRO"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 37,
+      "sequence": 12,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "spot",
+      "foils": [
+        {
+          "word": "sot",
+          "type": "OM"
+        },
+        {
+          "word": "spit",
+          "type": "V"
+        },
+        {
+          "word": "spod",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 38,
+      "sequence": 13,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "slip",
+      "foils": [
+        {
+          "word": "sip",
+          "type": "OM"
+        },
+        {
+          "word": "slap",
+          "type": "V"
+        },
+        {
+          "word": "slib",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 39,
+      "sequence": 14,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "hand",
+      "foils": [
+        {
+          "word": "had",
+          "type": "OM"
+        },
+        {
+          "word": "hund",
+          "type": "V"
+        },
+        {
+          "word": "hant",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 40,
+      "sequence": 15,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "milk",
+      "foils": [
+        {
+          "word": "mik",
+          "type": "OM"
+        },
+        {
+          "word": "malk",
+          "type": "V"
+        },
+        {
+          "word": "milp",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 41,
+      "sequence": 16,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "lamp",
+      "foils": [
+        {
+          "word": "lap",
+          "type": "OM"
+        },
+        {
+          "word": "limp",
+          "type": "V"
+        },
+        {
+          "word": "lamb",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 42,
+      "sequence": 17,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "jump",
+      "foils": [
+        {
+          "word": "jup",
+          "type": "OM"
+        },
+        {
+          "word": "jomp",
+          "type": "V"
+        },
+        {
+          "word": "jumb",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 43,
+      "sequence": 18,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "nest",
+      "foils": [
+        {
+          "word": "nes",
+          "type": "OM"
+        },
+        {
+          "word": "nast",
+          "type": "V"
+        },
+        {
+          "word": "nesk",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 44,
+      "sequence": 19,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "tent",
+      "foils": [
+        {
+          "word": "tet",
+          "type": "OM"
+        },
+        {
+          "word": "tint",
+          "type": "V"
+        },
+        {
+          "word": "tend",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 45,
+      "sequence": 20,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "gift",
+      "foils": [
+        {
+          "word": "gif",
+          "type": "OM"
+        },
+        {
+          "word": "gaft",
+          "type": "V"
+        },
+        {
+          "word": "gilt",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 46,
+      "sequence": 21,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "desk",
+      "foils": [
+        {
+          "word": "dek",
+          "type": "OM"
+        },
+        {
+          "word": "disk",
+          "type": "V"
+        },
+        {
+          "word": "desp",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 47,
+      "sequence": 22,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "belt",
+      "foils": [
+        {
+          "word": "bet",
+          "type": "OM"
+        },
+        {
+          "word": "bolt",
+          "type": "V"
+        },
+        {
+          "word": "belk",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 48,
+      "sequence": 23,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "camp",
+      "foils": [
+        {
+          "word": "cap",
+          "type": "OM"
+        },
+        {
+          "word": "comp",
+          "type": "V"
+        },
+        {
+          "word": "cand",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 49,
+      "sequence": 24,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "sand",
+      "foils": [
+        {
+          "word": "sad",
+          "type": "OM"
+        },
+        {
+          "word": "send",
+          "type": "V"
+        },
+        {
+          "word": "sant",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "item": 50,
+      "sequence": 25,
+      "skill": "Consonant blends (CCVC, CVCC)",
+      "target": "help",
+      "foils": [
+        {
+          "word": "hep",
+          "type": "OM"
+        },
+        {
+          "word": "halp",
+          "type": "V"
+        },
+        {
+          "word": "helk",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 51,
+      "sequence": 1,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "ship",
+      "foils": [
+        {
+          "word": "chip",
+          "type": "DIG"
+        },
+        {
+          "word": "sip",
+          "type": "OM"
+        },
+        {
+          "word": "sheep",
+          "type": "L1-VOW"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 52,
+      "sequence": 2,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "shop",
+      "foils": [
+        {
+          "word": "chop",
+          "type": "DIG"
+        },
+        {
+          "word": "sop",
+          "type": "OM"
+        },
+        {
+          "word": "shup",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 53,
+      "sequence": 3,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "fish",
+      "foils": [
+        {
+          "word": "fich",
+          "type": "DIG"
+        },
+        {
+          "word": "fis",
+          "type": "OM"
+        },
+        {
+          "word": "fush",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 54,
+      "sequence": 4,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "dish",
+      "foils": [
+        {
+          "word": "dich",
+          "type": "DIG"
+        },
+        {
+          "word": "dis",
+          "type": "OM"
+        },
+        {
+          "word": "desh",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 55,
+      "sequence": 5,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "chip",
+      "foils": [
+        {
+          "word": "ship",
+          "type": "DIG"
+        },
+        {
+          "word": "cip",
+          "type": "OM"
+        },
+        {
+          "word": "cheap",
+          "type": "L1-VOW"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 56,
+      "sequence": 6,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "chin",
+      "foils": [
+        {
+          "word": "shin",
+          "type": "DIG"
+        },
+        {
+          "word": "cin",
+          "type": "OM"
+        },
+        {
+          "word": "chan",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 57,
+      "sequence": 7,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "much",
+      "foils": [
+        {
+          "word": "mush",
+          "type": "DIG"
+        },
+        {
+          "word": "muc",
+          "type": "OM"
+        },
+        {
+          "word": "mich",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 58,
+      "sequence": 8,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "thin",
+      "foils": [
+        {
+          "word": "tin",
+          "type": "L1-TH"
+        },
+        {
+          "word": "shin",
+          "type": "DIG"
+        },
+        {
+          "word": "thon",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 59,
+      "sequence": 9,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "this",
+      "foils": [
+        {
+          "word": "dis",
+          "type": "L1-TH"
+        },
+        {
+          "word": "thes",
+          "type": "V"
+        },
+        {
+          "word": "thin",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 60,
+      "sequence": 10,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "bath",
+      "foils": [
+        {
+          "word": "bat",
+          "type": "OM"
+        },
+        {
+          "word": "beth",
+          "type": "V"
+        },
+        {
+          "word": "bas",
+          "type": "L1-TH"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 61,
+      "sequence": 11,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "with",
+      "foils": [
+        {
+          "word": "wit",
+          "type": "OM"
+        },
+        {
+          "word": "wath",
+          "type": "V"
+        },
+        {
+          "word": "wid",
+          "type": "L1-TH"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 62,
+      "sequence": 12,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "when",
+      "foils": [
+        {
+          "word": "wen",
+          "type": "PH"
+        },
+        {
+          "word": "whan",
+          "type": "V"
+        },
+        {
+          "word": "wehn",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 63,
+      "sequence": 13,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "whip",
+      "foils": [
+        {
+          "word": "wip",
+          "type": "OM"
+        },
+        {
+          "word": "whep",
+          "type": "V"
+        },
+        {
+          "word": "ship",
+          "type": "DIG"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 64,
+      "sequence": 14,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "duck",
+      "foils": [
+        {
+          "word": "duk",
+          "type": "PH"
+        },
+        {
+          "word": "dack",
+          "type": "V"
+        },
+        {
+          "word": "dug",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 65,
+      "sequence": 15,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "sock",
+      "foils": [
+        {
+          "word": "sok",
+          "type": "PH"
+        },
+        {
+          "word": "sack",
+          "type": "V"
+        },
+        {
+          "word": "sog",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 66,
+      "sequence": 16,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "neck",
+      "foils": [
+        {
+          "word": "nek",
+          "type": "PH"
+        },
+        {
+          "word": "nick",
+          "type": "V"
+        },
+        {
+          "word": "ned",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 67,
+      "sequence": 17,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "back",
+      "foils": [
+        {
+          "word": "bak",
+          "type": "PH"
+        },
+        {
+          "word": "beck",
+          "type": "V"
+        },
+        {
+          "word": "bag",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 68,
+      "sequence": 18,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "ring",
+      "foils": [
+        {
+          "word": "rin",
+          "type": "OM"
+        },
+        {
+          "word": "rang",
+          "type": "V"
+        },
+        {
+          "word": "rink",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 69,
+      "sequence": 19,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "king",
+      "foils": [
+        {
+          "word": "kin",
+          "type": "OM"
+        },
+        {
+          "word": "kang",
+          "type": "V"
+        },
+        {
+          "word": "kink",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 70,
+      "sequence": 20,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "song",
+      "foils": [
+        {
+          "word": "son",
+          "type": "OM"
+        },
+        {
+          "word": "sing",
+          "type": "V"
+        },
+        {
+          "word": "sonk",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 71,
+      "sequence": 21,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "long",
+      "foils": [
+        {
+          "word": "lon",
+          "type": "OM"
+        },
+        {
+          "word": "lung",
+          "type": "V"
+        },
+        {
+          "word": "lonk",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 72,
+      "sequence": 22,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "wing",
+      "foils": [
+        {
+          "word": "win",
+          "type": "OM"
+        },
+        {
+          "word": "wang",
+          "type": "V"
+        },
+        {
+          "word": "wink",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 73,
+      "sequence": 23,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "sink",
+      "foils": [
+        {
+          "word": "sin",
+          "type": "OM"
+        },
+        {
+          "word": "sank",
+          "type": "V"
+        },
+        {
+          "word": "sing",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 74,
+      "sequence": 24,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "pink",
+      "foils": [
+        {
+          "word": "pin",
+          "type": "OM"
+        },
+        {
+          "word": "punk",
+          "type": "V"
+        },
+        {
+          "word": "ping",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "item": 75,
+      "sequence": 25,
+      "skill": "Consonant digraphs (sh, ch, th, wh, ck, ng, nk)",
+      "target": "thank",
+      "foils": [
+        {
+          "word": "tank",
+          "type": "L1-TH"
+        },
+        {
+          "word": "thenk",
+          "type": "V"
+        },
+        {
+          "word": "thang",
+          "type": "FC"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 76,
+      "sequence": 1,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "cake",
+      "foils": [
+        {
+          "word": "cak",
+          "type": "OM"
+        },
+        {
+          "word": "kake",
+          "type": "PH"
+        },
+        {
+          "word": "cike",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 77,
+      "sequence": 2,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "make",
+      "foils": [
+        {
+          "word": "mak",
+          "type": "OM"
+        },
+        {
+          "word": "maik",
+          "type": "PH"
+        },
+        {
+          "word": "muke",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 78,
+      "sequence": 3,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "game",
+      "foils": [
+        {
+          "word": "gam",
+          "type": "OM"
+        },
+        {
+          "word": "gaim",
+          "type": "PH"
+        },
+        {
+          "word": "gome",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 79,
+      "sequence": 4,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "late",
+      "foils": [
+        {
+          "word": "lat",
+          "type": "OM"
+        },
+        {
+          "word": "layt",
+          "type": "PH"
+        },
+        {
+          "word": "lite",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 80,
+      "sequence": 5,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "wave",
+      "foils": [
+        {
+          "word": "wav",
+          "type": "OM"
+        },
+        {
+          "word": "waiv",
+          "type": "PH"
+        },
+        {
+          "word": "wive",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 81,
+      "sequence": 6,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "bike",
+      "foils": [
+        {
+          "word": "bik",
+          "type": "OM"
+        },
+        {
+          "word": "biek",
+          "type": "PH"
+        },
+        {
+          "word": "boke",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 82,
+      "sequence": 7,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "time",
+      "foils": [
+        {
+          "word": "tim",
+          "type": "OM"
+        },
+        {
+          "word": "tyme",
+          "type": "PH"
+        },
+        {
+          "word": "tome",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 83,
+      "sequence": 8,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "kite",
+      "foils": [
+        {
+          "word": "kit",
+          "type": "OM"
+        },
+        {
+          "word": "kyte",
+          "type": "PH"
+        },
+        {
+          "word": "kote",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 84,
+      "sequence": 9,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "five",
+      "foils": [
+        {
+          "word": "fiv",
+          "type": "OM"
+        },
+        {
+          "word": "fyve",
+          "type": "PH"
+        },
+        {
+          "word": "fove",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 85,
+      "sequence": 10,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "hide",
+      "foils": [
+        {
+          "word": "hid",
+          "type": "OM"
+        },
+        {
+          "word": "hied",
+          "type": "PH"
+        },
+        {
+          "word": "hade",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 86,
+      "sequence": 11,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "home",
+      "foils": [
+        {
+          "word": "hom",
+          "type": "OM"
+        },
+        {
+          "word": "hoam",
+          "type": "PH"
+        },
+        {
+          "word": "hame",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 87,
+      "sequence": 12,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "bone",
+      "foils": [
+        {
+          "word": "bon",
+          "type": "OM"
+        },
+        {
+          "word": "boan",
+          "type": "PH"
+        },
+        {
+          "word": "bane",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 88,
+      "sequence": 13,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "nose",
+      "foils": [
+        {
+          "word": "nos",
+          "type": "OM"
+        },
+        {
+          "word": "noze",
+          "type": "PH"
+        },
+        {
+          "word": "nase",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 89,
+      "sequence": 14,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "rope",
+      "foils": [
+        {
+          "word": "rop",
+          "type": "OM"
+        },
+        {
+          "word": "roap",
+          "type": "PH"
+        },
+        {
+          "word": "rupe",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 90,
+      "sequence": 15,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "hope",
+      "foils": [
+        {
+          "word": "hop",
+          "type": "OM"
+        },
+        {
+          "word": "hoap",
+          "type": "PH"
+        },
+        {
+          "word": "hupe",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 91,
+      "sequence": 16,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "cube",
+      "foils": [
+        {
+          "word": "cub",
+          "type": "OM"
+        },
+        {
+          "word": "kube",
+          "type": "PH"
+        },
+        {
+          "word": "cabe",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 92,
+      "sequence": 17,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "tube",
+      "foils": [
+        {
+          "word": "tub",
+          "type": "OM"
+        },
+        {
+          "word": "toob",
+          "type": "PH"
+        },
+        {
+          "word": "tabe",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 93,
+      "sequence": 18,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "cute",
+      "foils": [
+        {
+          "word": "cut",
+          "type": "OM"
+        },
+        {
+          "word": "kute",
+          "type": "PH"
+        },
+        {
+          "word": "cote",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 94,
+      "sequence": 19,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "rude",
+      "foils": [
+        {
+          "word": "rud",
+          "type": "OM"
+        },
+        {
+          "word": "rood",
+          "type": "PH"
+        },
+        {
+          "word": "rede",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "item": 95,
+      "sequence": 20,
+      "skill": "Silent-e (CVCe) long vowels",
+      "target": "gate",
+      "foils": [
+        {
+          "word": "gat",
+          "type": "OM"
+        },
+        {
+          "word": "gayt",
+          "type": "PH"
+        },
+        {
+          "word": "gite",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 96,
+      "sequence": 1,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "rain",
+      "foils": [
+        {
+          "word": "rane",
+          "type": "PH"
+        },
+        {
+          "word": "ran",
+          "type": "OM"
+        },
+        {
+          "word": "rean",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 97,
+      "sequence": 2,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "tail",
+      "foils": [
+        {
+          "word": "tayl",
+          "type": "PH"
+        },
+        {
+          "word": "tal",
+          "type": "OM"
+        },
+        {
+          "word": "teel",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 98,
+      "sequence": 3,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "train",
+      "foils": [
+        {
+          "word": "trane",
+          "type": "PH"
+        },
+        {
+          "word": "tran",
+          "type": "OM"
+        },
+        {
+          "word": "treen",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 99,
+      "sequence": 4,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "day",
+      "foils": [
+        {
+          "word": "dai",
+          "type": "PH"
+        },
+        {
+          "word": "da",
+          "type": "OM"
+        },
+        {
+          "word": "doy",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 100,
+      "sequence": 5,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "play",
+      "foils": [
+        {
+          "word": "plai",
+          "type": "PH"
+        },
+        {
+          "word": "pla",
+          "type": "OM"
+        },
+        {
+          "word": "ploy",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 101,
+      "sequence": 6,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "say",
+      "foils": [
+        {
+          "word": "sai",
+          "type": "PH"
+        },
+        {
+          "word": "sa",
+          "type": "OM"
+        },
+        {
+          "word": "soy",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 102,
+      "sequence": 7,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "tree",
+      "foils": [
+        {
+          "word": "tre",
+          "type": "OM"
+        },
+        {
+          "word": "trea",
+          "type": "PH"
+        },
+        {
+          "word": "troo",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 103,
+      "sequence": 8,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "seed",
+      "foils": [
+        {
+          "word": "sead",
+          "type": "PH"
+        },
+        {
+          "word": "sed",
+          "type": "OM"
+        },
+        {
+          "word": "sood",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 104,
+      "sequence": 9,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "feet",
+      "foils": [
+        {
+          "word": "fet",
+          "type": "OM"
+        },
+        {
+          "word": "foot",
+          "type": "V"
+        },
+        {
+          "word": "fiet",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 105,
+      "sequence": 10,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "green",
+      "foils": [
+        {
+          "word": "gren",
+          "type": "OM"
+        },
+        {
+          "word": "grean",
+          "type": "PH"
+        },
+        {
+          "word": "grin",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 106,
+      "sequence": 11,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "sleep",
+      "foils": [
+        {
+          "word": "slep",
+          "type": "OM"
+        },
+        {
+          "word": "sleap",
+          "type": "PH"
+        },
+        {
+          "word": "sloop",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 107,
+      "sequence": 12,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "eat",
+      "foils": [
+        {
+          "word": "et",
+          "type": "OM"
+        },
+        {
+          "word": "eet",
+          "type": "PH"
+        },
+        {
+          "word": "oat",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 108,
+      "sequence": 13,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "leaf",
+      "foils": [
+        {
+          "word": "lef",
+          "type": "OM"
+        },
+        {
+          "word": "leef",
+          "type": "PH"
+        },
+        {
+          "word": "loaf",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 109,
+      "sequence": 14,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "team",
+      "foils": [
+        {
+          "word": "tem",
+          "type": "OM"
+        },
+        {
+          "word": "teme",
+          "type": "PH"
+        },
+        {
+          "word": "tome",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 110,
+      "sequence": 15,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "reach",
+      "foils": [
+        {
+          "word": "rech",
+          "type": "OM"
+        },
+        {
+          "word": "reech",
+          "type": "PH"
+        },
+        {
+          "word": "roach",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 111,
+      "sequence": 16,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "dream",
+      "foils": [
+        {
+          "word": "drem",
+          "type": "OM"
+        },
+        {
+          "word": "dreem",
+          "type": "PH"
+        },
+        {
+          "word": "droam",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 112,
+      "sequence": 17,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "boat",
+      "foils": [
+        {
+          "word": "bot",
+          "type": "OM"
+        },
+        {
+          "word": "bote",
+          "type": "PH"
+        },
+        {
+          "word": "baot",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 113,
+      "sequence": 18,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "coat",
+      "foils": [
+        {
+          "word": "cot",
+          "type": "OM"
+        },
+        {
+          "word": "koat",
+          "type": "PH"
+        },
+        {
+          "word": "caot",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 114,
+      "sequence": 19,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "road",
+      "foils": [
+        {
+          "word": "rod",
+          "type": "OM"
+        },
+        {
+          "word": "roade",
+          "type": "PH"
+        },
+        {
+          "word": "raod",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 115,
+      "sequence": 20,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "soap",
+      "foils": [
+        {
+          "word": "sop",
+          "type": "OM"
+        },
+        {
+          "word": "sope",
+          "type": "PH"
+        },
+        {
+          "word": "saop",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 116,
+      "sequence": 21,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "snow",
+      "foils": [
+        {
+          "word": "sno",
+          "type": "OM"
+        },
+        {
+          "word": "snoe",
+          "type": "PH"
+        },
+        {
+          "word": "snew",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 117,
+      "sequence": 22,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "grow",
+      "foils": [
+        {
+          "word": "gro",
+          "type": "PH"
+        },
+        {
+          "word": "groe",
+          "type": "PH"
+        },
+        {
+          "word": "grew",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 118,
+      "sequence": 23,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "moon",
+      "foils": [
+        {
+          "word": "mon",
+          "type": "OM"
+        },
+        {
+          "word": "mune",
+          "type": "PH"
+        },
+        {
+          "word": "moan",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 119,
+      "sequence": 24,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "food",
+      "foils": [
+        {
+          "word": "fod",
+          "type": "OM"
+        },
+        {
+          "word": "fude",
+          "type": "PH"
+        },
+        {
+          "word": "foud",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 120,
+      "sequence": 25,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "boot",
+      "foils": [
+        {
+          "word": "bot",
+          "type": "OM"
+        },
+        {
+          "word": "bewt",
+          "type": "PH"
+        },
+        {
+          "word": "bout",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 121,
+      "sequence": 26,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "zoo",
+      "foils": [
+        {
+          "word": "zo",
+          "type": "OM"
+        },
+        {
+          "word": "zue",
+          "type": "PH"
+        },
+        {
+          "word": "zou",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 122,
+      "sequence": 27,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "book",
+      "foils": [
+        {
+          "word": "buk",
+          "type": "PH"
+        },
+        {
+          "word": "bok",
+          "type": "OM"
+        },
+        {
+          "word": "boak",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 123,
+      "sequence": 28,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "look",
+      "foils": [
+        {
+          "word": "luk",
+          "type": "PH"
+        },
+        {
+          "word": "lok",
+          "type": "OM"
+        },
+        {
+          "word": "leek",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 124,
+      "sequence": 29,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "foot",
+      "foils": [
+        {
+          "word": "fut",
+          "type": "PH"
+        },
+        {
+          "word": "fot",
+          "type": "OM"
+        },
+        {
+          "word": "fout",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "item": 125,
+      "sequence": 30,
+      "skill": "Vowel teams (ai, ay, ee, ea, oa, ow, oo, igh)",
+      "target": "night",
+      "foils": [
+        {
+          "word": "nite",
+          "type": "PH"
+        },
+        {
+          "word": "nit",
+          "type": "OM"
+        },
+        {
+          "word": "neet",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 126,
+      "sequence": 1,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "car",
+      "foils": [
+        {
+          "word": "ca",
+          "type": "OM"
+        },
+        {
+          "word": "kar",
+          "type": "PH"
+        },
+        {
+          "word": "cor",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 127,
+      "sequence": 2,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "star",
+      "foils": [
+        {
+          "word": "sta",
+          "type": "OM"
+        },
+        {
+          "word": "stor",
+          "type": "V"
+        },
+        {
+          "word": "stur",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 128,
+      "sequence": 3,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "farm",
+      "foils": [
+        {
+          "word": "fam",
+          "type": "OM"
+        },
+        {
+          "word": "form",
+          "type": "V"
+        },
+        {
+          "word": "fahm",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 129,
+      "sequence": 4,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "corn",
+      "foils": [
+        {
+          "word": "con",
+          "type": "OM"
+        },
+        {
+          "word": "carn",
+          "type": "V"
+        },
+        {
+          "word": "korn",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 130,
+      "sequence": 5,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "fork",
+      "foils": [
+        {
+          "word": "fok",
+          "type": "OM"
+        },
+        {
+          "word": "fark",
+          "type": "V"
+        },
+        {
+          "word": "forc",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 131,
+      "sequence": 6,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "bird",
+      "foils": [
+        {
+          "word": "bid",
+          "type": "OM"
+        },
+        {
+          "word": "burd",
+          "type": "PH"
+        },
+        {
+          "word": "bard",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 132,
+      "sequence": 7,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "girl",
+      "foils": [
+        {
+          "word": "gil",
+          "type": "OM"
+        },
+        {
+          "word": "gurl",
+          "type": "PH"
+        },
+        {
+          "word": "garl",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 133,
+      "sequence": 8,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "turn",
+      "foils": [
+        {
+          "word": "tun",
+          "type": "OM"
+        },
+        {
+          "word": "tirn",
+          "type": "PH"
+        },
+        {
+          "word": "torn",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 134,
+      "sequence": 9,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "burn",
+      "foils": [
+        {
+          "word": "bun",
+          "type": "OM"
+        },
+        {
+          "word": "bern",
+          "type": "PH"
+        },
+        {
+          "word": "born",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 135,
+      "sequence": 10,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "nurse",
+      "foils": [
+        {
+          "word": "nus",
+          "type": "OM"
+        },
+        {
+          "word": "nerse",
+          "type": "PH"
+        },
+        {
+          "word": "norse",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 136,
+      "sequence": 11,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "cloud",
+      "foils": [
+        {
+          "word": "clod",
+          "type": "OM"
+        },
+        {
+          "word": "clowd",
+          "type": "PH"
+        },
+        {
+          "word": "claud",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 137,
+      "sequence": 12,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "house",
+      "foils": [
+        {
+          "word": "hose",
+          "type": "V"
+        },
+        {
+          "word": "hows",
+          "type": "PH"
+        },
+        {
+          "word": "hus",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 138,
+      "sequence": 13,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "cow",
+      "foils": [
+        {
+          "word": "co",
+          "type": "OM"
+        },
+        {
+          "word": "cou",
+          "type": "PH"
+        },
+        {
+          "word": "caw",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 139,
+      "sequence": 14,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "town",
+      "foils": [
+        {
+          "word": "ton",
+          "type": "OM"
+        },
+        {
+          "word": "toun",
+          "type": "PH"
+        },
+        {
+          "word": "tawn",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 140,
+      "sequence": 15,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "coin",
+      "foils": [
+        {
+          "word": "con",
+          "type": "OM"
+        },
+        {
+          "word": "coyn",
+          "type": "PH"
+        },
+        {
+          "word": "coan",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 141,
+      "sequence": 16,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "boy",
+      "foils": [
+        {
+          "word": "bo",
+          "type": "OM"
+        },
+        {
+          "word": "boi",
+          "type": "PH"
+        },
+        {
+          "word": "bou",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 142,
+      "sequence": 17,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "toy",
+      "foils": [
+        {
+          "word": "to",
+          "type": "OM"
+        },
+        {
+          "word": "toi",
+          "type": "PH"
+        },
+        {
+          "word": "tay",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 143,
+      "sequence": 18,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "oil",
+      "foils": [
+        {
+          "word": "ol",
+          "type": "OM"
+        },
+        {
+          "word": "oyl",
+          "type": "PH"
+        },
+        {
+          "word": "owl",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 144,
+      "sequence": 19,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "saw",
+      "foils": [
+        {
+          "word": "so",
+          "type": "OM"
+        },
+        {
+          "word": "sau",
+          "type": "PH"
+        },
+        {
+          "word": "sew",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "item": 145,
+      "sequence": 20,
+      "skill": "R-controlled vowels and diphthongs",
+      "target": "draw",
+      "foils": [
+        {
+          "word": "dro",
+          "type": "OM"
+        },
+        {
+          "word": "drau",
+          "type": "PH"
+        },
+        {
+          "word": "drew",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 146,
+      "sequence": 1,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "was",
+      "foils": [
+        {
+          "word": "saw",
+          "type": "TR"
+        },
+        {
+          "word": "wuz",
+          "type": "REG"
+        },
+        {
+          "word": "wos",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 147,
+      "sequence": 2,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "said",
+      "foils": [
+        {
+          "word": "sed",
+          "type": "REG"
+        },
+        {
+          "word": "sad",
+          "type": "OM"
+        },
+        {
+          "word": "sayd",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 148,
+      "sequence": 3,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "come",
+      "foils": [
+        {
+          "word": "kum",
+          "type": "REG"
+        },
+        {
+          "word": "com",
+          "type": "OM"
+        },
+        {
+          "word": "cume",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 149,
+      "sequence": 4,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "some",
+      "foils": [
+        {
+          "word": "som",
+          "type": "OM"
+        },
+        {
+          "word": "sume",
+          "type": "REG"
+        },
+        {
+          "word": "soam",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 150,
+      "sequence": 5,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "one",
+      "foils": [
+        {
+          "word": "on",
+          "type": "OM"
+        },
+        {
+          "word": "wun",
+          "type": "REG"
+        },
+        {
+          "word": "ane",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 151,
+      "sequence": 6,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "they",
+      "foils": [
+        {
+          "word": "thay",
+          "type": "REG"
+        },
+        {
+          "word": "the",
+          "type": "OM"
+        },
+        {
+          "word": "dey",
+          "type": "L1-TH"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 152,
+      "sequence": 7,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "have",
+      "foils": [
+        {
+          "word": "hav",
+          "type": "REG"
+        },
+        {
+          "word": "hive",
+          "type": "V"
+        },
+        {
+          "word": "haev",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 153,
+      "sequence": 8,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "of",
+      "foils": [
+        {
+          "word": "ov",
+          "type": "REG"
+        },
+        {
+          "word": "off",
+          "type": "DBL"
+        },
+        {
+          "word": "if",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 154,
+      "sequence": 9,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "you",
+      "foils": [
+        {
+          "word": "yu",
+          "type": "PH"
+        },
+        {
+          "word": "yoo",
+          "type": "PH"
+        },
+        {
+          "word": "yuo",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 155,
+      "sequence": 10,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "what",
+      "foils": [
+        {
+          "word": "wot",
+          "type": "REG"
+        },
+        {
+          "word": "wat",
+          "type": "OM"
+        },
+        {
+          "word": "whut",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 156,
+      "sequence": 11,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "were",
+      "foils": [
+        {
+          "word": "wer",
+          "type": "OM"
+        },
+        {
+          "word": "wur",
+          "type": "PH"
+        },
+        {
+          "word": "wher",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 157,
+      "sequence": 12,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "friend",
+      "foils": [
+        {
+          "word": "frend",
+          "type": "PH"
+        },
+        {
+          "word": "freind",
+          "type": "TR"
+        },
+        {
+          "word": "fried",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 158,
+      "sequence": 13,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "would",
+      "foils": [
+        {
+          "word": "wud",
+          "type": "PH"
+        },
+        {
+          "word": "woud",
+          "type": "OM"
+        },
+        {
+          "word": "wold",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 159,
+      "sequence": 14,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "knife",
+      "foils": [
+        {
+          "word": "nife",
+          "type": "OM"
+        },
+        {
+          "word": "knif",
+          "type": "OM"
+        },
+        {
+          "word": "knyfe",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 160,
+      "sequence": 15,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "knot",
+      "foils": [
+        {
+          "word": "nott",
+          "type": "PH"
+        },
+        {
+          "word": "knit",
+          "type": "V"
+        },
+        {
+          "word": "knut",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 161,
+      "sequence": 16,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "lamb",
+      "foils": [
+        {
+          "word": "lamp",
+          "type": "FC"
+        },
+        {
+          "word": "limb",
+          "type": "V"
+        },
+        {
+          "word": "lamm",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 162,
+      "sequence": 17,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "comb",
+      "foils": [
+        {
+          "word": "com",
+          "type": "OM"
+        },
+        {
+          "word": "coam",
+          "type": "PH"
+        },
+        {
+          "word": "camb",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 163,
+      "sequence": 18,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "face",
+      "foils": [
+        {
+          "word": "fase",
+          "type": "PH"
+        },
+        {
+          "word": "fac",
+          "type": "OM"
+        },
+        {
+          "word": "fice",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 164,
+      "sequence": 19,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "city",
+      "foils": [
+        {
+          "word": "sity",
+          "type": "PH"
+        },
+        {
+          "word": "citty",
+          "type": "DBL"
+        },
+        {
+          "word": "cety",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "item": 165,
+      "sequence": 20,
+      "skill": "Irregular high-frequency words, silent letters, soft c/g",
+      "target": "cage",
+      "foils": [
+        {
+          "word": "caje",
+          "type": "PH"
+        },
+        {
+          "word": "cag",
+          "type": "OM"
+        },
+        {
+          "word": "coge",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 166,
+      "sequence": 1,
+      "skill": "Inflections and common suffixes",
+      "target": "jumped",
+      "foils": [
+        {
+          "word": "jumpt",
+          "type": "PH"
+        },
+        {
+          "word": "jump",
+          "type": "OM"
+        },
+        {
+          "word": "jumpid",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 167,
+      "sequence": 2,
+      "skill": "Inflections and common suffixes",
+      "target": "played",
+      "foils": [
+        {
+          "word": "playd",
+          "type": "PH"
+        },
+        {
+          "word": "plaid",
+          "type": "V"
+        },
+        {
+          "word": "plade",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 168,
+      "sequence": 3,
+      "skill": "Inflections and common suffixes",
+      "target": "dogs",
+      "foils": [
+        {
+          "word": "dogz",
+          "type": "PH"
+        },
+        {
+          "word": "dog",
+          "type": "OM"
+        },
+        {
+          "word": "dags",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 169,
+      "sequence": 4,
+      "skill": "Inflections and common suffixes",
+      "target": "boxes",
+      "foils": [
+        {
+          "word": "boxs",
+          "type": "OM"
+        },
+        {
+          "word": "boxez",
+          "type": "PH"
+        },
+        {
+          "word": "boxis",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 170,
+      "sequence": 5,
+      "skill": "Inflections and common suffixes",
+      "target": "running",
+      "foils": [
+        {
+          "word": "runing",
+          "type": "DBL"
+        },
+        {
+          "word": "runnin",
+          "type": "OM"
+        },
+        {
+          "word": "ranning",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 171,
+      "sequence": 6,
+      "skill": "Inflections and common suffixes",
+      "target": "hopping",
+      "foils": [
+        {
+          "word": "hoping",
+          "type": "DBL"
+        },
+        {
+          "word": "hopeing",
+          "type": "OVR"
+        },
+        {
+          "word": "hoppin",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 172,
+      "sequence": 7,
+      "skill": "Inflections and common suffixes",
+      "target": "making",
+      "foils": [
+        {
+          "word": "makeing",
+          "type": "OVR"
+        },
+        {
+          "word": "makin",
+          "type": "OM"
+        },
+        {
+          "word": "maiking",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 173,
+      "sequence": 8,
+      "skill": "Inflections and common suffixes",
+      "target": "babies",
+      "foils": [
+        {
+          "word": "babys",
+          "type": "OVR"
+        },
+        {
+          "word": "babyes",
+          "type": "OVR"
+        },
+        {
+          "word": "babeez",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 174,
+      "sequence": 9,
+      "skill": "Inflections and common suffixes",
+      "target": "happy",
+      "foils": [
+        {
+          "word": "hapy",
+          "type": "DBL"
+        },
+        {
+          "word": "happie",
+          "type": "PH"
+        },
+        {
+          "word": "heppy",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 175,
+      "sequence": 10,
+      "skill": "Inflections and common suffixes",
+      "target": "quickly",
+      "foils": [
+        {
+          "word": "quikly",
+          "type": "OM"
+        },
+        {
+          "word": "quickle",
+          "type": "OVR"
+        },
+        {
+          "word": "quicky",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 176,
+      "sequence": 11,
+      "skill": "Inflections and common suffixes",
+      "target": "bigger",
+      "foils": [
+        {
+          "word": "biger",
+          "type": "DBL"
+        },
+        {
+          "word": "bigur",
+          "type": "PH"
+        },
+        {
+          "word": "beger",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 177,
+      "sequence": 12,
+      "skill": "Inflections and common suffixes",
+      "target": "helpful",
+      "foils": [
+        {
+          "word": "helpfull",
+          "type": "OVR"
+        },
+        {
+          "word": "helpfool",
+          "type": "PH"
+        },
+        {
+          "word": "helpfl",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 178,
+      "sequence": 13,
+      "skill": "Inflections and common suffixes",
+      "target": "teacher",
+      "foils": [
+        {
+          "word": "teachur",
+          "type": "PH"
+        },
+        {
+          "word": "techer",
+          "type": "OM"
+        },
+        {
+          "word": "teecher",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 179,
+      "sequence": 14,
+      "skill": "Inflections and common suffixes",
+      "target": "wanted",
+      "foils": [
+        {
+          "word": "wantid",
+          "type": "PH"
+        },
+        {
+          "word": "want",
+          "type": "OM"
+        },
+        {
+          "word": "wantted",
+          "type": "DBL"
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "item": 180,
+      "sequence": 15,
+      "skill": "Inflections and common suffixes",
+      "target": "sadness",
+      "foils": [
+        {
+          "word": "sadnes",
+          "type": "OM"
+        },
+        {
+          "word": "sadnis",
+          "type": "PH"
+        },
+        {
+          "word": "sadeness",
+          "type": "INS"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 181,
+      "sequence": 1,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "rabbit",
+      "foils": [
+        {
+          "word": "rabit",
+          "type": "DBL"
+        },
+        {
+          "word": "rabbet",
+          "type": "V"
+        },
+        {
+          "word": "rabbt",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 182,
+      "sequence": 2,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "kitten",
+      "foils": [
+        {
+          "word": "kiten",
+          "type": "DBL"
+        },
+        {
+          "word": "kittin",
+          "type": "V"
+        },
+        {
+          "word": "kitn",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 183,
+      "sequence": 3,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "pencil",
+      "foils": [
+        {
+          "word": "pensil",
+          "type": "PH"
+        },
+        {
+          "word": "pencel",
+          "type": "V"
+        },
+        {
+          "word": "pencl",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 184,
+      "sequence": 4,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "table",
+      "foils": [
+        {
+          "word": "tabel",
+          "type": "TR"
+        },
+        {
+          "word": "tabl",
+          "type": "OM"
+        },
+        {
+          "word": "taybul",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 185,
+      "sequence": 5,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "window",
+      "foils": [
+        {
+          "word": "windo",
+          "type": "OM"
+        },
+        {
+          "word": "windoe",
+          "type": "PH"
+        },
+        {
+          "word": "wendow",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 186,
+      "sequence": 6,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "garden",
+      "foils": [
+        {
+          "word": "gardin",
+          "type": "V"
+        },
+        {
+          "word": "gardn",
+          "type": "OM"
+        },
+        {
+          "word": "gardun",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 187,
+      "sequence": 7,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "basket",
+      "foils": [
+        {
+          "word": "baskit",
+          "type": "PH"
+        },
+        {
+          "word": "bakset",
+          "type": "TR"
+        },
+        {
+          "word": "bassket",
+          "type": "DBL"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 188,
+      "sequence": 8,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "monster",
+      "foils": [
+        {
+          "word": "monstar",
+          "type": "V"
+        },
+        {
+          "word": "monstr",
+          "type": "OM"
+        },
+        {
+          "word": "mosnter",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 189,
+      "sequence": 9,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "animal",
+      "foils": [
+        {
+          "word": "animul",
+          "type": "V"
+        },
+        {
+          "word": "anmal",
+          "type": "OM"
+        },
+        {
+          "word": "animle",
+          "type": "PH"
+        }
+      ]
+    },
+    {
+      "level": 9,
+      "item": 190,
+      "sequence": 10,
+      "skill": "Multisyllable words (syllable types)",
+      "target": "elephant",
+      "foils": [
+        {
+          "word": "elefant",
+          "type": "PH"
+        },
+        {
+          "word": "elephent",
+          "type": "V"
+        },
+        {
+          "word": "elephnt",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 191,
+      "sequence": 1,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "station",
+      "foils": [
+        {
+          "word": "stashun",
+          "type": "PH"
+        },
+        {
+          "word": "stasion",
+          "type": "PH"
+        },
+        {
+          "word": "statin",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 192,
+      "sequence": 2,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "action",
+      "foils": [
+        {
+          "word": "akshun",
+          "type": "PH"
+        },
+        {
+          "word": "acsion",
+          "type": "OVR"
+        },
+        {
+          "word": "actoin",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 193,
+      "sequence": 3,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "picture",
+      "foils": [
+        {
+          "word": "pikture",
+          "type": "PH"
+        },
+        {
+          "word": "picsher",
+          "type": "PH"
+        },
+        {
+          "word": "pictur",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 194,
+      "sequence": 4,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "school",
+      "foils": [
+        {
+          "word": "skool",
+          "type": "PH"
+        },
+        {
+          "word": "schol",
+          "type": "OM"
+        },
+        {
+          "word": "shcool",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 195,
+      "sequence": 5,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "laugh",
+      "foils": [
+        {
+          "word": "laff",
+          "type": "PH"
+        },
+        {
+          "word": "lauf",
+          "type": "PH"
+        },
+        {
+          "word": "lagh",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 196,
+      "sequence": 6,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "enough",
+      "foils": [
+        {
+          "word": "enuff",
+          "type": "PH"
+        },
+        {
+          "word": "enouf",
+          "type": "PH"
+        },
+        {
+          "word": "enoug",
+          "type": "OM"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 197,
+      "sequence": 7,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "thought",
+      "foils": [
+        {
+          "word": "thawt",
+          "type": "PH"
+        },
+        {
+          "word": "thougt",
+          "type": "OM"
+        },
+        {
+          "word": "thouht",
+          "type": "TR"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 198,
+      "sequence": 8,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "weather",
+      "foils": [
+        {
+          "word": "wethur",
+          "type": "PH"
+        },
+        {
+          "word": "weater",
+          "type": "OM"
+        },
+        {
+          "word": "wheather",
+          "type": "INS"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 199,
+      "sequence": 9,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "beautiful",
+      "foils": [
+        {
+          "word": "butiful",
+          "type": "PH"
+        },
+        {
+          "word": "beutiful",
+          "type": "OM"
+        },
+        {
+          "word": "beautifull",
+          "type": "OVR"
+        }
+      ]
+    },
+    {
+      "level": 10,
+      "item": 200,
+      "sequence": 10,
+      "skill": "Advanced patterns (-tion, ough, ch=/k/, ph/gh, etc.)",
+      "target": "science",
+      "foils": [
+        {
+          "word": "siense",
+          "type": "PH"
+        },
+        {
+          "word": "sience",
+          "type": "OM"
+        },
+        {
+          "word": "scince",
+          "type": "TR"
+        }
+      ]
+    }
+  ]
+}
