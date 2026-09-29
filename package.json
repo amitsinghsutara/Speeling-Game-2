@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "gen:content": "node scripts/convert-xlsx-to-json.cjs"
+    "gen:content": "node scripts/convert-xlsx-to-json.cjs",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=forest-spelling-adventure --branch=main"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -29,6 +30,7 @@
     "typescript": "~6.0.2",
     "vite": "^8.3.0",
     "vitest": "^5.0.2",
+    "wrangler": "^4.143.1",
     "xlsx": "^0.18.5"
   }
 }
