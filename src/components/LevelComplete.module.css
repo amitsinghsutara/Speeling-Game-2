@@ -1,0 +1,51 @@
+.screen {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: clamp(20px, 4vh, 40px) clamp(16px, 5vw, 40px);
+  text-align: center;
+  overflow-y: auto;
+}
+
+.emoji {
+  font-size: clamp(2.2rem, 8vw, 3.2rem);
+  margin: 0;
+  animation: pop-in 0.4s ease;
+}
+
+.mascot {
+  margin: 4px 0;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.summary {
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.progressWrap {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 6px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 12px;
+}

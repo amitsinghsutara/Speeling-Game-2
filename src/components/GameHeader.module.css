@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 12px clamp(12px, 4vw, 28px);
+  background: linear-gradient(180deg, var(--wood-light), var(--wood-mid));
+  border-bottom: 4px solid var(--wood-dark);
+  box-shadow: var(--shadow-soft);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.backButton {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--wood-dark);
+  background: var(--panel-cream);
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.backIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.titleBlock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-on-wood);
+  font-family: var(--font-display);
+}
+
+.levelLabel {
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  font-weight: 700;
+}
+
+.questionLabel {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  opacity: 0.9;
+}

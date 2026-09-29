@@ -1,0 +1,105 @@
+.wrapper {
+  width: clamp(96px, 22vw, 180px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: transform 0.25s ease;
+}
+
+.head {
+  fill: #f3a35f;
+  stroke: #c97a3a;
+  stroke-width: 3;
+}
+
+.earOuter {
+  fill: #f3a35f;
+  stroke: #c97a3a;
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.earInner {
+  fill: #fff0dd;
+}
+
+.muzzle {
+  fill: #fff0dd;
+}
+
+.blush {
+  fill: #ff9d8a;
+  opacity: 0.55;
+}
+
+.eyebrow {
+  fill: none;
+  stroke: #7a4a24;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.eyeWhite {
+  fill: #fffaf3;
+  stroke: #7a4a24;
+  stroke-width: 2;
+}
+
+.pupil {
+  fill: #3a2b1a;
+}
+
+.nose {
+  fill: #7a4a24;
+}
+
+.mouth {
+  fill: none;
+  stroke: #7a4a24;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sweat {
+  fill: #bfe8ff;
+  stroke: #4fb3e8;
+  stroke-width: 1.5;
+}
+
+.sparkles path {
+  fill: var(--sun-yellow, #ffd35c);
+}
+
+/* mood-driven container animation */
+.wrapper.happy .svg {
+  animation: gentle-bob 3.2s ease-in-out infinite;
+}
+
+.wrapper.excited .svg {
+  animation: celebrate-bounce 0.9s ease-in-out infinite;
+}
+
+.wrapper.excited .mouth {
+  fill: #7a4a24;
+}
+
+.wrapper.thinking .svg {
+  animation: gentle-bob 4s ease-in-out infinite;
+}
+
+.wrapper.encouraging .svg {
+  animation: none;
+}
+
+.sparkles {
+  animation: star-twinkle 1s ease-in-out infinite;
+  transform-origin: 100px 100px;
+}

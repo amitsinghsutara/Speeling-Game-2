@@ -1,0 +1,176 @@
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 55%, var(--grass-light) 100%);
+}
+
+.sun {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  width: clamp(70px, 12vw, 130px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff2c4, var(--sun-yellow) 70%);
+  box-shadow: 0 0 40px 10px rgba(255, 211, 92, 0.35);
+}
+
+.cloud {
+  position: absolute;
+  background: var(--cloud);
+  border-radius: 999px;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: var(--cloud);
+  border-radius: 999px;
+}
+
+.cloud1 {
+  width: 120px;
+  height: 40px;
+  top: 10%;
+  left: 8%;
+  animation: float-cloud 26s ease-in-out infinite alternate;
+}
+.cloud1::before {
+  width: 60px;
+  height: 60px;
+  top: -28px;
+  left: 12px;
+}
+.cloud1::after {
+  width: 50px;
+  height: 50px;
+  top: -20px;
+  left: 55px;
+}
+
+.cloud2 {
+  width: 90px;
+  height: 32px;
+  top: 20%;
+  right: 20%;
+  animation: float-cloud 32s ease-in-out infinite alternate-reverse;
+}
+.cloud2::before {
+  width: 44px;
+  height: 44px;
+  top: -20px;
+  left: 10px;
+}
+.cloud2::after {
+  width: 36px;
+  height: 36px;
+  top: -14px;
+  left: 42px;
+}
+
+.cloud3 {
+  width: 70px;
+  height: 26px;
+  top: 6%;
+  left: 42%;
+  opacity: 0.75;
+  animation: float-cloud 20s ease-in-out infinite alternate;
+}
+.cloud3::before {
+  width: 34px;
+  height: 34px;
+  top: -16px;
+  left: 8px;
+}
+.cloud3::after {
+  width: 28px;
+  height: 28px;
+  top: -10px;
+  left: 32px;
+}
+
+.hillsBack {
+  position: absolute;
+  bottom: 8%;
+  left: 0;
+  width: 100%;
+  height: 22vh;
+  fill: var(--grass-mid);
+  opacity: 0.7;
+}
+
+.tree {
+  position: absolute;
+  width: clamp(60px, 9vw, 110px);
+  bottom: 6%;
+}
+.treeLeft {
+  left: 2%;
+}
+.treeRight {
+  right: 2%;
+}
+.trunk {
+  fill: var(--bark);
+}
+.leaf {
+  fill: var(--grass-mid);
+}
+.leafDark {
+  fill: var(--leaf);
+}
+
+.rock {
+  position: absolute;
+  width: clamp(40px, 6vw, 70px);
+  bottom: 3%;
+}
+.rockLeft {
+  left: 14%;
+}
+.rockRight {
+  right: 16%;
+}
+.rock ellipse {
+  fill: var(--rock);
+  stroke: var(--rock-dark);
+  stroke-width: 1.5;
+}
+
+.bush {
+  position: absolute;
+  width: clamp(70px, 10vw, 120px);
+  bottom: 4%;
+}
+.bush circle {
+  fill: var(--grass-mid);
+}
+.bush1 {
+  left: 28%;
+}
+.bush2 {
+  right: 30%;
+}
+
+.grassStrip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8%;
+  background: linear-gradient(180deg, var(--grass-mid), var(--grass-dark));
+}
+
+@media (max-width: 640px) {
+  .treeLeft,
+  .treeRight,
+  .rockLeft,
+  .rockRight {
+    opacity: 0.6;
+  }
+}

@@ -1,0 +1,43 @@
+.button {
+  border-radius: 50%;
+  border: 3px solid var(--sky-blue);
+  background: radial-gradient(circle at 35% 30%, #eaf9ff, var(--sky-blue));
+  color: var(--text-on-wood);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.15s ease;
+}
+
+.button:active {
+  transform: scale(0.94);
+}
+
+.button:hover {
+  filter: brightness(1.05);
+}
+
+.sm {
+  width: 48px;
+  height: 48px;
+}
+.sm .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.lg {
+  width: clamp(72px, 14vw, 96px);
+  height: clamp(72px, 14vw, 96px);
+  animation: gentle-bob 2.6s ease-in-out infinite;
+}
+.lg .icon {
+  width: clamp(32px, 6vw, 44px);
+  height: clamp(32px, 6vw, 44px);
+}
+
+.icon {
+  fill: currentColor;
+}
