@@ -2,11 +2,14 @@ import { describe, expect, it } from 'vitest';
 import type { Question } from '../data/types';
 import {
   calculateProgress,
+  chunkIntoPuzzles,
+  computeLevelStatuses,
   generateChoices,
   getFeedbackHint,
   getHintForFoilType,
   isCorrectAnswer,
   isLevelComplete,
+  isPuzzleUnlocked,
   shuffle,
 } from './engine';
 
@@ -161,5 +164,73 @@ describe('isLevelComplete', () => {
 
   it('is false for an empty level (no questions to complete)', () => {
     expect(isLevelComplete(0, 0)).toBe(false);
+  });
+});
+
+describe('chunkIntoPuzzles', () => {
+  it('splits evenly-divisible items into equal-sized puzzles', () => {
+    const items = Array.from({ length: 25 }, (_, i) => i);
+    const puzzles = chunkIntoPuzzles(items, 5);
+    expect(puzzles).toHaveLength(5);
+    expect(puzzles.every((p) => p.length === 5)).toBe(true);
+    expect(puzzles.flat()).toEqual(items); // order preserved, nothing dropped or duplicated
+  });
+
+  it('spreads a remainder across the earliest puzzles rather than dropping items', () => {
+    const items = Array.from({ length: 12 }, (_, i) => i); // 12 / 5 = 2 remainder 2
+    const puzzles = chunkIntoPuzzles(items, 5);
+    const sizes = puzzles.map((p) => p.length);
+    expect(sizes).toEqual([3, 3, 2, 2, 2]);
+    expect(puzzles.flat()).toHaveLength(12);
+  });
+
+  it('caps the puzzle count so no puzzle is left empty when there are fewer items than requested', () => {
+    const items = [1, 2, 3];
+    const puzzles = chunkIntoPuzzles(items, 5);
+    expect(puzzles).toHaveLength(3);
+    expect(puzzles.every((p) => p.length > 0)).toBe(true);
+  });
+
+  it('returns an empty array for an empty level', () => {
+    expect(chunkIntoPuzzles([], 5)).toEqual([]);
+  });
+});
+
+describe('isPuzzleUnlocked', () => {
+  it('puzzle 1 is always unlocked', () => {
+    expect(isPuzzleUnlocked(1, [])).toBe(true);
+  });
+
+  it('a later puzzle is locked until the one before it is completed', () => {
+    expect(isPuzzleUnlocked(2, [])).toBe(false);
+    expect(isPuzzleUnlocked(2, [1])).toBe(true);
+    expect(isPuzzleUnlocked(3, [1])).toBe(false);
+    expect(isPuzzleUnlocked(3, [1, 2])).toBe(true);
+  });
+});
+
+describe('computeLevelStatuses', () => {
+  it('always makes level 1 at least available', () => {
+    const statuses = computeLevelStatuses([1, 2, 3], {}, { 1: 5, 2: 5, 3: 5 });
+    expect(statuses.get(1)).toBe('available');
+  });
+
+  it('locks a level until the previous level has every puzzle completed', () => {
+    const statuses = computeLevelStatuses([1, 2, 3], { 1: [1, 2, 3, 4] }, { 1: 5, 2: 5, 3: 5 });
+    expect(statuses.get(1)).toBe('available'); // 4 of 5 puzzles done, not yet "completed"
+    expect(statuses.get(2)).toBe('locked');
+    expect(statuses.get(3)).toBe('locked');
+  });
+
+  it('unlocks the next level once the previous one is fully completed', () => {
+    const statuses = computeLevelStatuses([1, 2, 3], { 1: [1, 2, 3, 4, 5] }, { 1: 5, 2: 5, 3: 5 });
+    expect(statuses.get(1)).toBe('completed');
+    expect(statuses.get(2)).toBe('available');
+    expect(statuses.get(3)).toBe('locked');
+  });
+
+  it('marks a level completed only once all of its puzzles are done', () => {
+    const statuses = computeLevelStatuses([1], { 1: [1, 2, 3, 4, 5] }, { 1: 5 });
+    expect(statuses.get(1)).toBe('completed');
   });
 });

@@ -1,22 +1,23 @@
-import { getLevelList } from '../data/loadContent';
-import { isLevelUnlocked } from '../game/persistence';
+import { getLevelList, getPuzzleCountForLevel } from '../data/loadContent';
+import { computeLevelStatuses } from '../game/engine';
+import type { PuzzleProgress } from '../game/persistence';
 import { Mascot } from './Mascot';
-import { LevelCard, type LevelStatus } from './LevelCard';
+import { LevelCard } from './LevelCard';
 import styles from './GameHome.module.css';
 
 interface GameHomeProps {
-  completedLevels: number[];
-  onStartLevel: (level: number) => void;
+  puzzleProgress: PuzzleProgress;
+  onSelectLevel: (level: number) => void;
 }
 
-function statusFor(level: number, completedLevels: number[]): LevelStatus {
-  if (completedLevels.includes(level)) return 'completed';
-  if (!isLevelUnlocked(level, completedLevels)) return 'locked';
-  return 'available';
-}
-
-export function GameHome({ completedLevels, onStartLevel }: GameHomeProps) {
+export function GameHome({ puzzleProgress, onSelectLevel }: GameHomeProps) {
   const levels = getLevelList();
+  const puzzleCountByLevel = Object.fromEntries(levels.map((l) => [l.level, getPuzzleCountForLevel(l.level)]));
+  const statuses = computeLevelStatuses(
+    levels.map((l) => l.level),
+    puzzleProgress,
+    puzzleCountByLevel,
+  );
 
   return (
     <div className={styles.screen}>
@@ -33,8 +34,8 @@ export function GameHome({ completedLevels, onStartLevel }: GameHomeProps) {
           <LevelCard
             key={level.level}
             level={level}
-            status={statusFor(level.level, completedLevels)}
-            onStart={onStartLevel}
+            status={statuses.get(level.level) ?? 'locked'}
+            onStart={onSelectLevel}
           />
         ))}
       </div>

@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { soundEffectPlayer } from '../game/soundEffects';
 import styles from './GameButton.module.css';
 
 interface GameButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -7,9 +8,16 @@ interface GameButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /** Large, rounded, high-contrast touch target used for every primary action. */
-export function GameButton({ variant = 'primary', className, children, ...rest }: GameButtonProps) {
+export function GameButton({ variant = 'primary', className, children, onClick, ...rest }: GameButtonProps) {
   return (
-    <button className={`${styles.button} ${styles[variant]} ${className ?? ''}`} {...rest}>
+    <button
+      className={`${styles.button} ${styles[variant]} ${className ?? ''}`}
+      onClick={(event) => {
+        soundEffectPlayer.playClick();
+        onClick?.(event);
+      }}
+      {...rest}
+    >
       {children}
     </button>
   );

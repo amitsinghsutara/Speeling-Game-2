@@ -1,3 +1,4 @@
+import { soundEffectPlayer } from '../game/soundEffects';
 import styles from './AnswerButton.module.css';
 
 export type AnswerButtonState = 'idle' | 'correct' | 'wrong' | 'disabled' | 'locked';
@@ -16,7 +17,10 @@ export function AnswerButton({ word, state, onClick }: AnswerButtonProps) {
     <button
       type="button"
       className={`${styles.button} ${styles[state]}`}
-      onClick={onClick}
+      onClick={() => {
+        soundEffectPlayer.playClick();
+        onClick();
+      }}
       disabled={state === 'disabled' || state === 'locked' || state === 'correct'}
       aria-label={`${word}${statusText}`}
     >

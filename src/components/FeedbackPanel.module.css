@@ -2,13 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: clamp(14px, 3vw, 22px);
+  gap: 8px;
+  padding: clamp(12px, 2.5vw, 18px);
   border-radius: var(--radius-md);
   animation: pop-in 0.3s ease;
   width: 100%;
   max-width: 560px;
   text-align: center;
+  scroll-margin-bottom: 16px;
 }
 
 .correct {

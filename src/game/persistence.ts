@@ -1,30 +1,39 @@
 /**
- * Persists which levels the learner has completed so unlocked progress
- * survives a page reload. Falls back to an in-memory store if
- * localStorage is unavailable (private browsing, WebView restrictions).
+ * Persists which puzzles the learner has completed in each level, so
+ * unlocked progress survives a page reload. Falls back to an in-memory
+ * store if localStorage is unavailable (private browsing, WebView
+ * restrictions). Purely storage I/O — lock/unlock/complete rules live in
+ * `game/engine.ts` as pure, testable functions over this data.
  */
-const STORAGE_KEY = 'spelling-game:completed-levels';
+const STORAGE_KEY = 'spelling-game:puzzle-progress';
+
+/** Maps a level number to the list of completed puzzle numbers (1-indexed) within it. */
+export type PuzzleProgress = Record<number, number[]>;
 
 interface ProgressStore {
-  getCompletedLevels(): number[];
-  markLevelComplete(level: number): void;
+  getProgress(): PuzzleProgress;
+  markPuzzleComplete(level: number, puzzleNumber: number): void;
 }
 
-function readLocalStorage(): number[] {
+function isValidProgress(value: unknown): value is PuzzleProgress {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  return Object.values(value).every((v) => Array.isArray(v) && v.every((n) => typeof n === 'number'));
+}
+
+function readLocalStorage(): PuzzleProgress {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed.filter((n): n is number => typeof n === 'number');
+    if (!raw) return {};
+    const parsed: unknown = JSON.parse(raw);
+    return isValidProgress(parsed) ? parsed : {};
   } catch {
-    return [];
+    return {};
   }
 }
 
-function writeLocalStorage(levels: number[]): void {
+function writeLocalStorage(progress: PuzzleProgress): void {
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(levels));
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   } catch {
     // Storage unavailable (e.g. private browsing quota) — progress simply
     // won't persist across reloads this session.
@@ -42,27 +51,31 @@ function hasWorkingLocalStorage(): boolean {
   }
 }
 
+function addCompletedPuzzle(progress: PuzzleProgress, level: number, puzzleNumber: number): PuzzleProgress {
+  const completedForLevel = new Set(progress[level] ?? []);
+  completedForLevel.add(puzzleNumber);
+  return { ...progress, [level]: [...completedForLevel].sort((a, b) => a - b) };
+}
+
 class LocalStorageProgressStore implements ProgressStore {
-  getCompletedLevels(): number[] {
+  getProgress(): PuzzleProgress {
     return readLocalStorage();
   }
 
-  markLevelComplete(level: number): void {
-    const current = new Set(readLocalStorage());
-    current.add(level);
-    writeLocalStorage([...current].sort((a, b) => a - b));
+  markPuzzleComplete(level: number, puzzleNumber: number): void {
+    writeLocalStorage(addCompletedPuzzle(readLocalStorage(), level, puzzleNumber));
   }
 }
 
 class InMemoryProgressStore implements ProgressStore {
-  private completed = new Set<number>();
+  private progress: PuzzleProgress = {};
 
-  getCompletedLevels(): number[] {
-    return [...this.completed].sort((a, b) => a - b);
+  getProgress(): PuzzleProgress {
+    return this.progress;
   }
 
-  markLevelComplete(level: number): void {
-    this.completed.add(level);
+  markPuzzleComplete(level: number, puzzleNumber: number): void {
+    this.progress = addCompletedPuzzle(this.progress, level, puzzleNumber);
   }
 }
 
@@ -74,9 +87,3 @@ function createDefaultStore(): ProgressStore {
 }
 
 export const progressStore: ProgressStore = createDefaultStore();
-
-/** A level is unlocked if it's Level 1, or the level before it is complete. */
-export function isLevelUnlocked(level: number, completedLevels: number[]): boolean {
-  if (level <= 1) return true;
-  return completedLevels.includes(level - 1);
-}

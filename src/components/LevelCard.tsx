@@ -1,8 +1,9 @@
 import type { LevelInfo } from '../data/types';
+import type { LevelStatus } from '../game/engine';
 import { GameButton } from './GameButton';
 import styles from './LevelCard.module.css';
 
-export type LevelStatus = 'locked' | 'available' | 'completed';
+export type { LevelStatus };
 
 interface LevelCardProps {
   level: LevelInfo;

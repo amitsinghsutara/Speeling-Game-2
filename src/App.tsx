@@ -1,26 +1,55 @@
 import { getLevelList } from './data/loadContent';
 import { useGameEngine } from './game/useGameEngine';
 import { ForestBackground } from './components/decorations/ForestBackground';
+import { Welcome } from './components/Welcome';
 import { GameHome } from './components/GameHome';
+import { PuzzleSelect } from './components/PuzzleSelect';
 import { QuestionScreen } from './components/QuestionScreen';
+import { PuzzleComplete } from './components/PuzzleComplete';
 import { LevelComplete } from './components/LevelComplete';
 
 function App() {
-  const { state, currentQuestion, feedbackHint, startLevel, selectAnswer, nextQuestion, goHome, replayWord } =
-    useGameEngine();
+  const {
+    state,
+    currentQuestion,
+    feedbackHint,
+    selectLevel,
+    startPuzzle,
+    selectAnswer,
+    nextQuestion,
+    nextPuzzle,
+    backToPuzzleSelect,
+    goHome,
+    replayWord,
+  } = useGameEngine();
 
   const levels = getLevelList();
   const hasNextLevel = state.levelNumber !== null && levels.some((l) => l.level === state.levelNumber! + 1);
+  const totalWordsInLevel = state.puzzles.reduce((sum, puzzle) => sum + puzzle.length, 0);
 
   return (
     <>
       <ForestBackground />
 
-      {state.screen === 'home' && <GameHome completedLevels={state.completedLevels} onStartLevel={startLevel} />}
+      {state.screen === 'welcome' && <Welcome onPlay={goHome} />}
+
+      {state.screen === 'home' && <GameHome puzzleProgress={state.puzzleProgress} onSelectLevel={selectLevel} />}
+
+      {state.screen === 'puzzleSelect' && state.levelNumber !== null && (
+        <PuzzleSelect
+          levelNumber={state.levelNumber}
+          levelSkill={state.levelSkill}
+          puzzles={state.puzzles}
+          completedPuzzleNumbers={state.puzzleProgress[state.levelNumber] ?? []}
+          onSelectPuzzle={startPuzzle}
+          onBack={goHome}
+        />
+      )}
 
       {state.screen === 'question' && currentQuestion && (
         <QuestionScreen
           levelNumber={state.levelNumber ?? 1}
+          puzzleNumber={state.puzzleNumber}
           question={currentQuestion}
           questionIndex={state.questionIndex}
           totalQuestions={state.questions.length}
@@ -29,10 +58,19 @@ function App() {
           status={state.status}
           incorrectWords={state.incorrectWords}
           feedbackHint={feedbackHint}
-          onBack={goHome}
+          onBack={backToPuzzleSelect}
           onReplay={replayWord}
           onSelect={selectAnswer}
           onNext={nextQuestion}
+        />
+      )}
+
+      {state.screen === 'puzzleComplete' && (
+        <PuzzleComplete
+          puzzleNumber={state.puzzleNumber}
+          totalPuzzles={state.puzzles.length}
+          onPuzzleMap={backToPuzzleSelect}
+          onNextPuzzle={nextPuzzle}
         />
       )}
 
@@ -40,10 +78,10 @@ function App() {
         <LevelComplete
           levelNumber={state.levelNumber}
           skill={state.levelSkill}
-          wordCount={state.questions.length}
+          wordCount={totalWordsInLevel}
           hasNextLevel={hasNextLevel}
           onHome={goHome}
-          onNextLevel={() => startLevel(state.levelNumber! + 1)}
+          onNextLevel={() => selectLevel(state.levelNumber! + 1)}
         />
       )}
     </>

@@ -1,9 +1,17 @@
 .wrapper {
-  width: clamp(96px, 22vw, 180px);
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: width 0.2s ease;
+}
+
+.lg {
+  width: clamp(96px, 22vw, 180px);
+}
+
+.sm {
+  width: clamp(56px, 12vw, 92px);
 }
 
 .svg {

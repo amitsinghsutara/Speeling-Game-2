@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import type { Question, AnswerChoice } from '../data/types';
 import { GameHeader } from './GameHeader';
 import { QuestionPrompt } from './QuestionPrompt';
@@ -9,6 +10,7 @@ import styles from './QuestionScreen.module.css';
 
 interface QuestionScreenProps {
   levelNumber: number;
+  puzzleNumber: number;
   question: Question;
   questionIndex: number;
   totalQuestions: number;
@@ -31,6 +33,7 @@ function mascotMoodFor(status: 'unanswered' | 'correct' | 'incorrect'): MascotMo
 
 export function QuestionScreen({
   levelNumber,
+  puzzleNumber,
   question,
   questionIndex,
   totalQuestions,
@@ -44,10 +47,24 @@ export function QuestionScreen({
   onSelect,
   onNext,
 }: QuestionScreenProps) {
+  const feedbackRef = useRef<HTMLDivElement>(null);
+  const answered = status !== 'unanswered';
+
+  // Safety net for any screen short enough that the compact layout still
+  // doesn't fully fit: bring the feedback (and its Next button) into view
+  // the moment an answer is given, instead of leaving the learner to find
+  // it by scrolling.
+  useEffect(() => {
+    if (answered) {
+      feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  }, [answered]);
+
   return (
     <div className={styles.screen}>
       <GameHeader
         levelNumber={levelNumber}
+        puzzleNumber={puzzleNumber}
         questionNumber={questionIndex + 1}
         totalQuestions={totalQuestions}
         onBack={onBack}
@@ -55,9 +72,9 @@ export function QuestionScreen({
       />
 
       <div className={styles.content}>
-        <Mascot mood={mascotMoodFor(status)} className={styles.mascot} />
+        <Mascot mood={mascotMoodFor(status)} size={answered ? 'sm' : 'lg'} className={styles.mascot} />
 
-        <QuestionPrompt onPlay={onReplay} />
+        <QuestionPrompt onPlay={onReplay} compact={answered} />
 
         <AnswerGrid
           choices={choices}
@@ -67,7 +84,9 @@ export function QuestionScreen({
           onSelect={onSelect}
         />
 
-        <FeedbackPanel status={status} targetWord={question.target} hint={feedbackHint} onNext={onNext} />
+        <div ref={feedbackRef}>
+          <FeedbackPanel status={status} targetWord={question.target} hint={feedbackHint} onNext={onNext} />
+        </div>
 
         <Confetti active={status === 'correct'} />
       </div>

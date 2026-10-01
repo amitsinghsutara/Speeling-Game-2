@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
-import { getQuestionsForLevel, getLevelList } from '../data/loadContent';
+import { getPuzzlesForLevel, getLevelList } from '../data/loadContent';
 import { wordAudioPlayer } from './audio';
 import { getFeedbackHint } from './engine';
 import { progressStore } from './persistence';
@@ -7,10 +7,10 @@ import { gameReducer, initialGameState } from './gameState';
 
 export function useGameEngine() {
   const [state, dispatch] = useReducer(gameReducer, initialGameState);
-  const hasMarkedCompleteRef = useRef(false);
+  const lastMarkedPuzzleRef = useRef<string | null>(null);
 
   useEffect(() => {
-    dispatch({ type: 'SET_COMPLETED_LEVELS', levels: progressStore.getCompletedLevels() });
+    dispatch({ type: 'SET_PUZZLE_PROGRESS', progress: progressStore.getProgress() });
   }, []);
 
   const currentQuestion = state.questions[state.questionIndex];
@@ -24,29 +24,31 @@ export function useGameEngine() {
       wordAudioPlayer.stop();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.screen, state.questionIndex, state.levelNumber]);
+  }, [state.screen, state.questionIndex, state.puzzleNumber, state.levelNumber]);
 
-  // Persist level completion exactly once per level clear.
+  // Persist puzzle completion exactly once per puzzle clear.
   useEffect(() => {
-    if (state.screen === 'levelComplete' && state.levelNumber !== null && !hasMarkedCompleteRef.current) {
-      hasMarkedCompleteRef.current = true;
-      progressStore.markLevelComplete(state.levelNumber);
-      dispatch({ type: 'SET_COMPLETED_LEVELS', levels: progressStore.getCompletedLevels() });
-    }
-    if (state.screen !== 'levelComplete') {
-      hasMarkedCompleteRef.current = false;
-    }
-  }, [state.screen, state.levelNumber]);
+    const isPuzzleFinishedScreen = state.screen === 'puzzleComplete' || state.screen === 'levelComplete';
+    const puzzleKey = `${state.levelNumber}:${state.puzzleNumber}`;
 
-  const startLevel = useCallback((level: number) => {
+    if (isPuzzleFinishedScreen && state.levelNumber !== null && lastMarkedPuzzleRef.current !== puzzleKey) {
+      lastMarkedPuzzleRef.current = puzzleKey;
+      progressStore.markPuzzleComplete(state.levelNumber, state.puzzleNumber);
+      dispatch({ type: 'SET_PUZZLE_PROGRESS', progress: progressStore.getProgress() });
+    }
+    if (!isPuzzleFinishedScreen) {
+      lastMarkedPuzzleRef.current = null;
+    }
+  }, [state.screen, state.levelNumber, state.puzzleNumber]);
+
+  const selectLevel = useCallback((level: number) => {
     const levelInfo = getLevelList().find((l) => l.level === level);
-    const questions = getQuestionsForLevel(level);
-    dispatch({
-      type: 'START_LEVEL',
-      level,
-      skill: levelInfo?.skill ?? '',
-      questions,
-    });
+    const puzzles = getPuzzlesForLevel(level);
+    dispatch({ type: 'SELECT_LEVEL', level, skill: levelInfo?.skill ?? '', puzzles });
+  }, []);
+
+  const startPuzzle = useCallback((puzzleNumber: number) => {
+    dispatch({ type: 'START_PUZZLE', puzzleNumber });
   }, []);
 
   const selectAnswer = useCallback((word: string) => {
@@ -55,6 +57,14 @@ export function useGameEngine() {
 
   const nextQuestion = useCallback(() => {
     dispatch({ type: 'ADVANCE_QUESTION' });
+  }, []);
+
+  const nextPuzzle = useCallback(() => {
+    dispatch({ type: 'NEXT_PUZZLE' });
+  }, []);
+
+  const backToPuzzleSelect = useCallback(() => {
+    dispatch({ type: 'BACK_TO_PUZZLE_SELECT' });
   }, []);
 
   const goHome = useCallback(() => {
@@ -76,9 +86,12 @@ export function useGameEngine() {
     state,
     currentQuestion,
     feedbackHint,
-    startLevel,
+    selectLevel,
+    startPuzzle,
     selectAnswer,
     nextQuestion,
+    nextPuzzle,
+    backToPuzzleSelect,
     goHome,
     replayWord,
   };

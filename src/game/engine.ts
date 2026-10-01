@@ -97,7 +97,67 @@ export function calculateProgress(completedCount: number, total: number): Progre
   };
 }
 
-/** Whether every question in a level has been answered correctly. */
+/** Whether every question in a puzzle (or every puzzle in a level) is done. */
 export function isLevelComplete(completedCount: number, total: number): boolean {
   return total > 0 && completedCount >= total;
+}
+
+/** Default number of puzzles each level is split into. */
+export const DEFAULT_PUZZLE_COUNT = 5;
+
+/**
+ * Splits a level's questions into a fixed number of puzzles, in order.
+ * Sizes are kept as even as possible: any remainder is spread one-per-puzzle
+ * across the earliest puzzles. If there are fewer items than requested
+ * puzzles, the puzzle count is capped so no puzzle ends up empty.
+ */
+export function chunkIntoPuzzles<T>(items: T[], puzzleCount: number = DEFAULT_PUZZLE_COUNT): T[][] {
+  if (items.length === 0) return [];
+
+  const count = Math.max(1, Math.min(puzzleCount, items.length));
+  const base = Math.floor(items.length / count);
+  const remainder = items.length % count;
+
+  const puzzles: T[][] = [];
+  let cursor = 0;
+  for (let i = 0; i < count; i++) {
+    const size = base + (i < remainder ? 1 : 0);
+    puzzles.push(items.slice(cursor, cursor + size));
+    cursor += size;
+  }
+  return puzzles;
+}
+
+/** Puzzle 1 is always unlocked; puzzle N unlocks once puzzle N-1 is complete. */
+export function isPuzzleUnlocked(puzzleNumber: number, completedPuzzleNumbers: number[]): boolean {
+  if (puzzleNumber <= 1) return true;
+  return completedPuzzleNumbers.includes(puzzleNumber - 1);
+}
+
+export type LevelStatus = 'locked' | 'available' | 'completed';
+
+/**
+ * Resolves the lock/available/completed status of every level, given how
+ * many puzzles have been completed in each and how many puzzles each level
+ * contains. Level 1 is always at least available; every later level opens
+ * up once the level before it has every puzzle completed.
+ */
+export function computeLevelStatuses(
+  levelNumbers: number[],
+  completedPuzzlesByLevel: Record<number, number[]>,
+  puzzleCountByLevel: Record<number, number>,
+): Map<number, LevelStatus> {
+  const statuses = new Map<number, LevelStatus>();
+  let previousLevelComplete = true;
+
+  for (const level of levelNumbers) {
+    const completedCount = completedPuzzlesByLevel[level]?.length ?? 0;
+    const puzzleCount = puzzleCountByLevel[level] ?? 0;
+    const isComplete = isLevelComplete(completedCount, puzzleCount);
+    const status: LevelStatus = isComplete ? 'completed' : previousLevelComplete ? 'available' : 'locked';
+    statuses.set(level, status);
+    previousLevelComplete = isComplete;
+  }
+
+  return statuses;
 }

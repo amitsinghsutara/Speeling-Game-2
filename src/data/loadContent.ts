@@ -1,5 +1,6 @@
 import rawContent from './content.generated.json';
 import type { GameContent, LevelInfo, Question } from './types';
+import { chunkIntoPuzzles, DEFAULT_PUZZLE_COUNT } from '../game/engine';
 
 /**
  * Validates and normalizes a single question, returning null if it is
@@ -107,4 +108,14 @@ export function getQuestionsForLevel(level: number): Question[] {
 
 export function getFoilTypeLabel(code: string): string {
   return getGameContent().foilTypeLabels[code] ?? code;
+}
+
+/** Splits a level's questions into puzzles of `puzzleCount` (default 5), in order. */
+export function getPuzzlesForLevel(level: number, puzzleCount: number = DEFAULT_PUZZLE_COUNT): Question[][] {
+  return chunkIntoPuzzles(getQuestionsForLevel(level), puzzleCount);
+}
+
+/** How many puzzles a level actually splits into (may be less than `puzzleCount` for a short level). */
+export function getPuzzleCountForLevel(level: number, puzzleCount: number = DEFAULT_PUZZLE_COUNT): number {
+  return getPuzzlesForLevel(level, puzzleCount).length;
 }

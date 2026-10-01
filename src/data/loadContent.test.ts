@@ -105,4 +105,19 @@ describe('getGameContent', () => {
     expect(getFoilTypeLabel('V')).toBe('Vowel substitution');
     expect(getFoilTypeLabel('UNKNOWN')).toBe('UNKNOWN');
   });
+
+  it('splits a level into puzzles without losing or duplicating any of its questions', async () => {
+    const { getPuzzlesForLevel, getQuestionsForLevel } = await import('./loadContent');
+    const puzzles = getPuzzlesForLevel(1, 5);
+    const allQuestionsInLevel = getQuestionsForLevel(1);
+    expect(puzzles.flat()).toEqual(allQuestionsInLevel);
+    expect(puzzles.length).toBeLessThanOrEqual(5);
+  });
+
+  it('reports how many puzzles a level actually splits into', async () => {
+    const { getPuzzleCountForLevel } = await import('./loadContent');
+    // Only one well-formed question survives validation for level 1 in this
+    // fixture, so the puzzle count caps down instead of producing empties.
+    expect(getPuzzleCountForLevel(1, 5)).toBe(1);
+  });
 });

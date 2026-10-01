@@ -7,6 +7,8 @@ interface MascotProps {
   className?: string;
   /** Accessible label; defaults to a mood-appropriate description. */
   label?: string;
+  /** 'sm' shrinks the mascot so answered-question feedback fits without scrolling. */
+  size?: 'sm' | 'lg';
 }
 
 const MOOD_LABELS: Record<MascotMood, string> = {
@@ -76,12 +78,12 @@ const FACES: Record<MascotMood, FaceConfig> = {
  * game logic — every screen that reacts to game state just passes a
  * new `mood`.
  */
-export function Mascot({ mood, className, label }: MascotProps) {
+export function Mascot({ mood, className, label, size = 'lg' }: MascotProps) {
   const face = FACES[mood];
 
   return (
     <div
-      className={`${styles.wrapper} ${styles[mood]} ${className ?? ''}`}
+      className={`${styles.wrapper} ${styles[size]} ${styles[mood]} ${className ?? ''}`}
       role="img"
       aria-label={label ?? MOOD_LABELS[mood]}
     >
