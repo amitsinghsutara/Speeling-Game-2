@@ -7,6 +7,7 @@ interface ConfettiProps {
 }
 
 const COLORS = ['#ffd35c', '#4fb3e8', '#e25c4f', '#8fd67f', '#c97af3'];
+const SHAPES = ['square', 'circle', 'star'] as const;
 
 /** Lightweight celebratory confetti burst. Purely decorative. */
 export function Confetti({ active, pieceCount = 18 }: ConfettiProps) {
@@ -16,6 +17,7 @@ export function Confetti({ active, pieceCount = 18 }: ConfettiProps) {
         id: i,
         left: (i / pieceCount) * 100 + (i % 3) * 2,
         color: COLORS[i % COLORS.length],
+        shape: SHAPES[i % SHAPES.length],
         delay: (i % 6) * 0.12,
         rotate: (i * 37) % 360,
       })),
@@ -29,7 +31,7 @@ export function Confetti({ active, pieceCount = 18 }: ConfettiProps) {
       {pieces.map((p) => (
         <span
           key={p.id}
-          className={styles.piece}
+          className={`${styles.piece} ${styles[p.shape]}`}
           style={{
             left: `${p.left}%`,
             backgroundColor: p.color,
