@@ -1,20 +1,67 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { GameButton } from './GameButton';
 import styles from './UpdatePrompt.module.css';
+
+/** How often an already-open tab re-checks for a new deploy in the background. */
+const CHECK_INTERVAL_MS = 60 * 60 * 1000;
 
 /**
  * Small banner that appears once a new version of the game has finished
  * downloading in the background. Nothing updates silently — the learner
  * (or the adult with them) chooses when to refresh, so an update never
  * interrupts an answer mid-question.
+ *
+ * A browser only checks for a new service worker on navigation by default.
+ * A long-lived single tab (the common case — most players never hard-reload)
+ * would otherwise never notice a new deploy, so this also re-checks on an
+ * interval and whenever the tab becomes visible again. Those checks are
+ * watched with the registration's own native `updatefound`/`statechange`
+ * events directly, rather than relying on the "waiting" event workbox-window
+ * sets up for its own registration-time flow — that one doesn't reliably
+ * fire for an update() call triggered later from a long-lived tab.
  */
 export function UpdatePrompt() {
+  const [registration, setRegistration] = useState<ServiceWorkerRegistration | null>(null);
   const {
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
-  } = useRegisterSW();
+  } = useRegisterSW({
+    onRegisteredSW(_swUrl, reg) {
+      setRegistration(reg ?? null);
+    },
+  });
   const [updating, setUpdating] = useState(false);
+
+  useEffect(() => {
+    if (!registration) return;
+
+    const watchInstallingWorker = () => {
+      const installing = registration.installing;
+      if (!installing) return;
+      const onStateChange = () => {
+        if (installing.state === 'installed' && navigator.serviceWorker.controller) {
+          setNeedRefresh(true);
+        }
+      };
+      installing.addEventListener('statechange', onStateChange);
+    };
+    registration.addEventListener('updatefound', watchInstallingWorker);
+
+    const checkForUpdate = () => registration.update().catch(() => {});
+    const intervalId = window.setInterval(checkForUpdate, CHECK_INTERVAL_MS);
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') checkForUpdate();
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    return () => {
+      registration.removeEventListener('updatefound', watchInstallingWorker);
+      window.clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    };
+  }, [registration, setNeedRefresh]);
 
   if (!needRefresh) return null;
 
