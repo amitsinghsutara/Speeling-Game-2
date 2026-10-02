@@ -42,7 +42,7 @@ export default defineConfig({
         // Precache every built asset so the whole game (all levels/puzzles,
         // since content.generated.json is bundled into the JS) works offline
         // after the first visit.
-        globPatterns: ['**/*.{js,css,html,svg,png,woff,woff2}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,woff,woff2,mp3}'],
         navigateFallback: '/index.html',
         // Without this, a newly-activated worker (after the learner taps
         // "Update") never takes control of tabs that were already open — it

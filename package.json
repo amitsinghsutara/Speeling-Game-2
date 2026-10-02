@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "gen:content": "node scripts/convert-xlsx-to-json.cjs",
+    "gen:audio": "node scripts/generate-word-audio.cjs",
     "deploy": "npm run build && wrangler pages deploy dist --project-name=forest-spelling-adventure --branch=main"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "@vitest/ui": "^5.0.2",
     "jsdom": "^30.1.1",
+    "msedge-tts": "^2.0.8",
     "oxlint": "^1.81.0",
     "typescript": "~6.0.2",
     "vite": "^8.3.0",

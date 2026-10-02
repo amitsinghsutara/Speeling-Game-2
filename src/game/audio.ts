@@ -58,11 +58,63 @@ class SilentAudioPlayer implements WordAudioPlayer {
   }
 }
 
-function createDefaultPlayer(): WordAudioPlayer {
-  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-    return new SpeechSynthesisAudioPlayer({ rate: 0.8, lang: 'en-US' });
+/**
+ * Plays a pre-generated MP3 (see scripts/generate-word-audio.cjs) for the
+ * word, bundled under /audio/words/. This is what the game actually uses in
+ * production: unlike speechSynthesis, plain <audio> playback works reliably
+ * inside the Android container's WebView, and the files get precached by
+ * the service worker for offline play. Falls back to `fallback` (speech
+ * synthesis, or silence) for any word that has no generated file yet.
+ */
+class FileAudioPlayer implements WordAudioPlayer {
+  private current: HTMLAudioElement | null = null;
+  private fallback: WordAudioPlayer;
+
+  constructor(fallback: WordAudioPlayer) {
+    this.fallback = fallback;
   }
-  return new SilentAudioPlayer();
+
+  isSupported(): boolean {
+    return typeof window !== 'undefined' && typeof Audio !== 'undefined';
+  }
+
+  playWord(word: string): void {
+    if (!word) return;
+    this.stop();
+
+    if (!this.isSupported()) {
+      this.fallback.playWord(word);
+      return;
+    }
+
+    const audio = new Audio(`/audio/words/${encodeURIComponent(word)}.mp3`);
+    this.current = audio;
+    const useFallback = () => {
+      if (this.current === audio) this.fallback.playWord(word);
+    };
+    audio.addEventListener('error', useFallback);
+    audio.play().catch(useFallback);
+  }
+
+  stop(): void {
+    if (this.current) {
+      this.current.pause();
+      this.current = null;
+    }
+    this.fallback.stop();
+  }
+}
+
+function createDefaultPlayer(): WordAudioPlayer {
+  const fallback: WordAudioPlayer =
+    typeof window !== 'undefined' && 'speechSynthesis' in window
+      ? new SpeechSynthesisAudioPlayer({ rate: 0.8, lang: 'en-US' })
+      : new SilentAudioPlayer();
+
+  if (typeof window !== 'undefined' && typeof Audio !== 'undefined') {
+    return new FileAudioPlayer(fallback);
+  }
+  return fallback;
 }
 
 export const wordAudioPlayer: WordAudioPlayer = createDefaultPlayer();
