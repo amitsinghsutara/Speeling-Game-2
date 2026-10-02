@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRegisterSW } from 'virtual:pwa-register/react';
+import { usePwa } from '../pwa/PwaProvider';
 import { GameButton } from './GameButton';
 import styles from './UpdatePrompt.module.css';
 
@@ -22,15 +22,7 @@ const CHECK_INTERVAL_MS = 60 * 60 * 1000;
  * fire for an update() call triggered later from a long-lived tab.
  */
 export function UpdatePrompt() {
-  const [registration, setRegistration] = useState<ServiceWorkerRegistration | null>(null);
-  const {
-    needRefresh: [needRefresh, setNeedRefresh],
-    updateServiceWorker,
-  } = useRegisterSW({
-    onRegisteredSW(_swUrl, reg) {
-      setRegistration(reg ?? null);
-    },
-  });
+  const { registration, needRefresh, setNeedRefresh, updateServiceWorker } = usePwa();
   const [updating, setUpdating] = useState(false);
 
   useEffect(() => {

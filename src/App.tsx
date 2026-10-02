@@ -1,6 +1,9 @@
 import { getLevelList } from './data/loadContent';
 import { useGameEngine } from './game/useGameEngine';
+import { usePwa } from './pwa/PwaProvider';
+import { useAppReady } from './pwa/useAppReady';
 import { ForestBackground } from './components/decorations/ForestBackground';
+import { LoadingScreen } from './components/LoadingScreen';
 import { UpdatePrompt } from './components/UpdatePrompt';
 import { Welcome } from './components/Welcome';
 import { GameHome } from './components/GameHome';
@@ -24,9 +27,14 @@ function App() {
     replayWord,
   } = useGameEngine();
 
+  const { offlineReady } = usePwa();
+  const ready = useAppReady(offlineReady);
+
   const levels = getLevelList();
   const hasNextLevel = state.levelNumber !== null && levels.some((l) => l.level === state.levelNumber! + 1);
   const totalWordsInLevel = state.puzzles.reduce((sum, puzzle) => sum + puzzle.length, 0);
+
+  if (!ready) return <LoadingScreen />;
 
   return (
     <>
