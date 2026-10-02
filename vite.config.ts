@@ -8,7 +8,10 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
+      // Registration is handled by the useRegisterSW() hook in
+      // UpdatePrompt.tsx instead, so the prompt UI has state to work with.
+      injectRegister: null,
       includeAssets: ['favicon.svg'],
       manifest: {
         name: 'Forest Spelling Adventure',
@@ -31,6 +34,11 @@ export default defineConfig({
         // after the first visit.
         globPatterns: ['**/*.{js,css,html,svg,png,woff,woff2}'],
         navigateFallback: '/index.html',
+        // Without this, a newly-activated worker (after the learner taps
+        // "Update") never takes control of tabs that were already open — it
+        // only controls future navigations, so the update prompt's reload
+        // would silently do nothing on an existing tab.
+        clientsClaim: true,
         runtimeCaching: [
           {
             // Google Fonts stylesheet: small and changes rarely, but check

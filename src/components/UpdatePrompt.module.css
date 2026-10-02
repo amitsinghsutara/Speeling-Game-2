@@ -1,0 +1,40 @@
+.banner {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 16px);
+  width: calc(100% - 24px);
+  max-width: 420px;
+  padding: 10px 16px;
+  background: linear-gradient(180deg, var(--wood-light), var(--wood-mid));
+  border: 3px solid var(--wood-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-strong);
+  animation: pop-in 0.3s ease;
+}
+
+.message {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-on-wood);
+  font-size: clamp(0.85rem, 2.4vw, 1rem);
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  font-size: 0.85rem;
+  padding: 0.5em 1.2em;
+  min-height: 40px;
+}

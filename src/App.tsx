@@ -1,6 +1,7 @@
 import { getLevelList } from './data/loadContent';
 import { useGameEngine } from './game/useGameEngine';
 import { ForestBackground } from './components/decorations/ForestBackground';
+import { UpdatePrompt } from './components/UpdatePrompt';
 import { Welcome } from './components/Welcome';
 import { GameHome } from './components/GameHome';
 import { PuzzleSelect } from './components/PuzzleSelect';
@@ -30,6 +31,7 @@ function App() {
   return (
     <>
       <ForestBackground />
+      <UpdatePrompt />
 
       {state.screen === 'welcome' && <Welcome onPlay={goHome} />}
 
