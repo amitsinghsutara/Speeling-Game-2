@@ -27,11 +27,12 @@ function resolveState(
 export function AnswerGrid({ choices, selectedWord, status, incorrectWords, onSelect }: AnswerGridProps) {
   return (
     <div className={styles.grid} role="group" aria-label="Choose the correct spelling">
-      {choices.map((choice) => (
+      {choices.map((choice, index) => (
         <AnswerButton
           key={choice.word}
           word={choice.word}
           state={resolveState(choice, selectedWord, status, incorrectWords)}
+          index={index}
           onClick={() => onSelect(choice.word)}
         />
       ))}
