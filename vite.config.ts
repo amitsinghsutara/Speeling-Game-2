@@ -12,6 +12,16 @@ export default defineConfig({
       // Registration is handled by the useRegisterSW() hook in
       // UpdatePrompt.tsx instead, so the prompt UI has state to work with.
       injectRegister: null,
+      // Lets the update-prompt flow (banner, periodic/visibility checks,
+      // click-to-reload) be exercised under `npm run dev` too — handy for
+      // iterating on it without a full build+preview cycle each time. This
+      // does NOT give `npm run dev` real offline support: Vite serves dev
+      // code as many unbundled ES modules rather than a few built bundles,
+      // so there's nothing stable for Workbox to precache in this mode.
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      },
       includeAssets: ['favicon.svg'],
       manifest: {
         name: 'Forest Spelling Adventure',
