@@ -16,6 +16,8 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  animation: bounce-in 0.4s ease backwards;
+  animation-delay: var(--enter-delay, 0ms);
 }
 
 .button:hover:not(:disabled) {

@@ -6,17 +6,20 @@ export type AnswerButtonState = 'idle' | 'correct' | 'wrong' | 'disabled' | 'loc
 interface AnswerButtonProps {
   word: string;
   state: AnswerButtonState;
+  /** Position in the grid; staggers the entrance animation so choices bounce in one after another. */
+  index?: number;
   onClick: () => void;
 }
 
 /** One answer choice in the 2x2 grid. */
-export function AnswerButton({ word, state, onClick }: AnswerButtonProps) {
+export function AnswerButton({ word, state, index = 0, onClick }: AnswerButtonProps) {
   const statusText = state === 'correct' ? ' (correct answer)' : state === 'wrong' ? ' (not correct, try again)' : '';
 
   return (
     <button
       type="button"
       className={`${styles.button} ${styles[state]}`}
+      style={{ '--enter-delay': `${index * 70}ms` } as React.CSSProperties}
       onClick={() => {
         soundEffectPlayer.playClick();
         onClick();

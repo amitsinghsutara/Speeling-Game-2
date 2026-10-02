@@ -42,4 +42,5 @@
   background: var(--correct);
   border-color: var(--correct-dark);
   transform: scale(1.1);
+  animation: dot-pop 0.35s ease;
 }
