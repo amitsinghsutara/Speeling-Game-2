@@ -29,15 +29,17 @@ export function GameHome({ puzzleProgress, onSelectLevel }: GameHomeProps) {
 
       <p className={styles.subtitle}>Pick a level to start practicing!</p>
 
-      <div className={styles.levelList}>
-        {levels.map((level) => (
-          <LevelCard
-            key={level.level}
-            level={level}
-            status={statuses.get(level.level) ?? 'locked'}
-            onStart={onSelectLevel}
-          />
-        ))}
+      <div className={styles.levelListWrap}>
+        <div className={styles.levelList}>
+          {levels.map((level) => (
+            <LevelCard
+              key={level.level}
+              level={level}
+              status={statuses.get(level.level) ?? 'locked'}
+              onStart={onSelectLevel}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

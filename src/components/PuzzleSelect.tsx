@@ -120,20 +120,22 @@ export function PuzzleSelect({
 
       <p className={styles.subtitle}>Choose a puzzle to practice!</p>
 
-      <div className={styles.path}>
-        {puzzles.map((puzzle, index) => {
-          const puzzleNumber = index + 1;
-          return (
-            <PuzzleNode
-              key={puzzleNumber}
-              puzzleNumber={puzzleNumber}
-              wordCount={puzzle.length}
-              status={statusFor(puzzleNumber, completedPuzzleNumbers)}
-              isLast={index === puzzles.length - 1}
-              onSelect={() => onSelectPuzzle(puzzleNumber)}
-            />
-          );
-        })}
+      <div className={styles.pathWrap}>
+        <div className={styles.path}>
+          {puzzles.map((puzzle, index) => {
+            const puzzleNumber = index + 1;
+            return (
+              <PuzzleNode
+                key={puzzleNumber}
+                puzzleNumber={puzzleNumber}
+                wordCount={puzzle.length}
+                status={statusFor(puzzleNumber, completedPuzzleNumbers)}
+                isLast={index === puzzles.length - 1}
+                onSelect={() => onSelectPuzzle(puzzleNumber)}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

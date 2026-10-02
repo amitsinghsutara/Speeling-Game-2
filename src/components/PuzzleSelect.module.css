@@ -1,13 +1,13 @@
 .screen {
   position: relative;
   z-index: 1;
-  min-height: 100dvh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   padding: clamp(16px, 3vh, 28px) clamp(16px, 5vw, 40px) clamp(40px, 6vh, 64px);
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .topBar {
@@ -82,12 +82,22 @@
   text-align: center;
 }
 
+.pathWrap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+
 .path {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   width: 100%;
   max-width: 420px;
+  padding-bottom: 8px;
 }
 
 .nodeRow {
