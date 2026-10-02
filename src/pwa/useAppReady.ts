@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { notifyAndroidCacheStatus } from './notifyAndroidCacheStatus';
 
 /**
  * Upper bound on how long the loading screen will wait for `offlineReady`.
@@ -17,11 +18,20 @@ const READY_FALLBACK_TIMEOUT_MS = 6000;
  */
 export function useAppReady(offlineReady: boolean): boolean {
   const [ready, setReady] = useState(
-    () => typeof navigator === 'undefined' || !('serviceWorker' in navigator) || !!navigator.serviceWorker.controller,
+    () => typeof navigator === 'undefined' || !navigator.serviceWorker || !!navigator.serviceWorker.controller,
   );
 
   useEffect(() => {
-    if (offlineReady) setReady(true);
+    if (navigator.serviceWorker?.controller) {
+      notifyAndroidCacheStatus(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (offlineReady) {
+      notifyAndroidCacheStatus(true);
+      setReady(true);
+    }
   }, [offlineReady]);
 
   useEffect(() => {
