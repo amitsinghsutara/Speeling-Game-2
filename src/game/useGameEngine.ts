@@ -4,14 +4,17 @@ import { wordAudioPlayer } from './audio';
 import { getFeedbackHint, starsForMistakes } from './engine';
 import { progressStore } from './persistence';
 import { gameReducer, initialGameState } from './gameState';
+import { recordAnswerEvent, slugifySkill, startLearningSync } from '../learning';
 
 export function useGameEngine() {
   const [state, dispatch] = useReducer(gameReducer, initialGameState);
   const lastMarkedPuzzleRef = useRef<string | null>(null);
+  const questionStartedAtRef = useRef<number | null>(null);
 
   useEffect(() => {
     dispatch({ type: 'SET_PUZZLE_PROGRESS', progress: progressStore.getProgress() });
     dispatch({ type: 'SET_PUZZLE_STARS', stars: progressStore.getStars() });
+    startLearningSync();
   }, []);
 
   const currentQuestion = state.questions[state.questionIndex];
@@ -20,6 +23,7 @@ export function useGameEngine() {
   useEffect(() => {
     if (state.screen === 'question' && currentQuestion) {
       wordAudioPlayer.playWord(currentQuestion.target);
+      questionStartedAtRef.current = performance.now();
     }
     return () => {
       wordAudioPlayer.stop();
@@ -54,9 +58,34 @@ export function useGameEngine() {
     dispatch({ type: 'START_PUZZLE', puzzleNumber });
   }, []);
 
-  const selectAnswer = useCallback((word: string) => {
-    dispatch({ type: 'SELECT_ANSWER', word });
-  }, []);
+  const selectAnswer = useCallback(
+    (word: string) => {
+      const current = state.questions[state.questionIndex];
+      const shouldRecord = !!current && state.status !== 'correct';
+      const chosen = shouldRecord ? state.choices.find((c) => c.word === word) : undefined;
+      const correct = !!chosen?.isCorrect;
+      const responseTimeMs =
+        questionStartedAtRef.current !== null ? performance.now() - questionStartedAtRef.current : undefined;
+
+      dispatch({ type: 'SELECT_ANSWER', word });
+
+      // Fire-and-forget: telemetry must never delay or block the dispatch above.
+      if (shouldRecord && current && state.levelNumber !== null) {
+        recordAnswerEvent({
+          levelId: `level-${state.levelNumber}`,
+          puzzleId: `level-${state.levelNumber}-puzzle-${state.puzzleNumber}`,
+          skillId: slugifySkill(current.skill),
+          targetWord: current.target,
+          selectedAnswer: word,
+          correct,
+          foilType: correct ? undefined : chosen?.type,
+          responseTimeMs,
+          attemptNumber: state.attempts + 1,
+        });
+      }
+    },
+    [state],
+  );
 
   const nextQuestion = useCallback(() => {
     dispatch({ type: 'ADVANCE_QUESTION' });

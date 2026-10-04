@@ -13,6 +13,11 @@ dist-ssr
 dev-dist
 *.local
 
+# Local environment config (e.g. the AI Learning Engine URL) — see .env.example
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
