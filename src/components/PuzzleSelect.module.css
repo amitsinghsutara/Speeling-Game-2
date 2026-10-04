@@ -97,6 +97,7 @@
   align-items: stretch;
   width: 100%;
   max-width: 420px;
+  padding-top: 16px;
   padding-bottom: 8px;
 }
 
