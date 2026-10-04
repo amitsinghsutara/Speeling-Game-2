@@ -1,13 +1,15 @@
 /**
- * Orchestrates the "Child's Progress" screen's data: tries a live fetch,
- * falls back to the last cached summary when the engine can't be reached,
- * and tells the caller which of those happened so the UI can be honest
- * about whether what's shown is current or stale.
+ * Orchestrates the "Child's Progress" screen's data: serves a recent cached
+ * summary immediately when one exists so opening the screen doesn't re-run
+ * the engine's (slow, LLM-backed) analysis every time, otherwise tries a
+ * live fetch and falls back to the last cached summary when the engine
+ * can't be reached — telling the caller which of those happened so the UI
+ * can be honest about whether what's shown is current or stale.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getLearnerId } from '../learning';
 import { progressApiClient } from './progressApiClient';
-import { getCachedProgress, setCachedProgress, type CachedProgress } from './progressCache';
+import { getCachedProgress, isCacheFresh, setCachedProgress, type CachedProgress } from './progressCache';
 import type { ProgressResponse } from './types';
 
 export type ChildProgressState =
@@ -17,6 +19,11 @@ export type ChildProgressState =
   | { status: 'empty' }
   | { status: 'offline'; cached: CachedProgress | null }
   | { status: 'error'; cached: CachedProgress | null };
+
+// How long a cached summary is treated as current enough to skip a live
+// re-analysis when the screen is reopened. The parent's explicit "Refresh"
+// button always bypasses this and forces a fresh fetch.
+const CACHE_FRESH_MS = 10 * 60 * 1000;
 
 function isOffline(): boolean {
   return typeof navigator !== 'undefined' && navigator.onLine === false;
@@ -28,8 +35,18 @@ export function useChildProgress() {
   // the parent mashes "Refresh" before the first request has settled.
   const requestIdRef = useRef(0);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (options?: { force?: boolean }) => {
     const requestId = ++requestIdRef.current;
+    const force = options?.force ?? false;
+
+    if (!force) {
+      const cached = getCachedProgress();
+      if (cached && isCacheFresh(cached, CACHE_FRESH_MS)) {
+        setState(cached.data.skills.length === 0 ? { status: 'empty' } : { status: 'ready', data: cached.data });
+        return;
+      }
+    }
+
     setState({ status: 'loading' });
 
     if (isOffline()) {
@@ -55,5 +72,7 @@ export function useChildProgress() {
     void load();
   }, [load]);
 
-  return { state, refresh: load };
+  const refresh = useCallback(() => load({ force: true }), [load]);
+
+  return { state, refresh };
 }

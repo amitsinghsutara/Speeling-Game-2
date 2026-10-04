@@ -56,3 +56,10 @@ export function setCachedProgress(data: ProgressResponse, retrievedAt: string): 
     // won't persist this session.
   }
 }
+
+/** Whether a cached summary is recent enough to show without re-running the engine's analysis. */
+export function isCacheFresh(cached: CachedProgress, maxAgeMs: number): boolean {
+  const retrievedAt = new Date(cached.retrievedAt).getTime();
+  if (Number.isNaN(retrievedAt)) return false;
+  return Date.now() - retrievedAt < maxAgeMs;
+}
