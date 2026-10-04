@@ -104,7 +104,7 @@ describe('progressApiClient.getLearnerProgress', () => {
     );
 
     const resultPromise = progressApiClient.getLearnerProgress('abc123');
-    await vi.advanceTimersByTimeAsync(10_000);
+    await vi.advanceTimersByTimeAsync(90_000);
 
     await expect(resultPromise).resolves.toEqual({ status: 'timeout' });
   });

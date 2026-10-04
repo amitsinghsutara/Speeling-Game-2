@@ -138,6 +138,9 @@ export function ChildProgressScreen({ onBack }: ChildProgressScreenProps) {
             <Mascot mood="thinking" className={styles.statusMascot} />
             <p className={styles.statusHeading}>Analyzing progress...</p>
             <p className={styles.statusBody}>🌱 Looking at recent learning activities...</p>
+            <p className={styles.statusFootnote}>
+              This can take up to a minute — the analysis runs locally on your device.
+            </p>
           </div>
         )}
 

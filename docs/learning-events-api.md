@@ -174,7 +174,7 @@ same as a server error — the client never renders partially-malformed data.
 | Status | Client behavior |
 |---|---|
 | `200` | Body parsed and validated; on success it's cached locally and rendered. |
-| Any other status, a request timeout (10s), a network failure, or a body that fails validation | Treated uniformly as "couldn't load right now" — the client falls back to the last cached summary if one exists, otherwise shows a friendly retry prompt. Never surfaces the HTTP status, a stack trace, or any internal error detail to the parent. |
+| Any other status, a request timeout (90s — generous because the engine's analysis step is a local LLM call that can legitimately take up to a minute or more on CPU-only hardware), a network failure, or a body that fails validation | Treated uniformly as "couldn't load right now" — the client falls back to the last cached summary if one exists, otherwise shows a friendly retry prompt. Never surfaces the HTTP status, a stack trace, or any internal error detail to the parent. |
 
 ### Content and safety requirements
 

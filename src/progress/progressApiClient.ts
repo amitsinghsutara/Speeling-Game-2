@@ -8,7 +8,14 @@
 import { progressResponseSchema, type ProgressApiClient, type ProgressFetchResult } from './types';
 
 const DEFAULT_BASE_URL = 'http://localhost:3000';
-const REQUEST_TIMEOUT_MS = 10_000;
+/**
+ * The engine's progress summary runs a local LLM call (Ollama, CPU-only by default), which the
+ * engine's own docs note can take anywhere from ~20 seconds to over a minute per request — a
+ * short client-side timeout would fail nearly every real request. 90s gives that call room to
+ * finish while staying safely under the engine's own 180s upstream timeout, so a truly stuck
+ * request surfaces there first as a clean 504 rather than this client giving up mid-analysis.
+ */
+const REQUEST_TIMEOUT_MS = 90_000;
 
 function getBaseUrl(): string {
   return import.meta.env.VITE_LEARNING_ENGINE_URL ?? DEFAULT_BASE_URL;
