@@ -69,3 +69,48 @@
   width: 100%;
   padding-bottom: 8px;
 }
+
+.progressButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 560px;
+  background: var(--panel-cream);
+  border: 3px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(10px, 2.5vw, 16px) clamp(14px, 3vw, 22px);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  text-align: left;
+}
+
+.progressButton:active {
+  transform: scale(0.98);
+}
+
+.progressButtonEmoji {
+  font-size: clamp(1.6rem, 5vw, 2rem);
+  flex-shrink: 0;
+}
+
+.progressButtonText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.progressButtonTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+  color: var(--text-dark);
+}
+
+.progressButtonSubtitle {
+  font-size: clamp(0.78rem, 2.2vw, 0.88rem);
+  color: var(--text-muted);
+  font-weight: 600;
+}

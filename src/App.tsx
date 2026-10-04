@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { getLevelList } from './data/loadContent';
 import { useGameEngine } from './game/useGameEngine';
 import { useDevMode } from './game/useDevMode';
@@ -13,8 +14,10 @@ import { PuzzleSelect } from './components/PuzzleSelect';
 import { QuestionScreen } from './components/QuestionScreen';
 import { PuzzleComplete } from './components/PuzzleComplete';
 import { LevelComplete } from './components/LevelComplete';
+import { ChildProgressScreen } from './components/ChildProgressScreen';
 
 function App() {
+  const [showChildProgress, setShowChildProgress] = useState(false);
   const {
     state,
     currentQuestion,
@@ -40,6 +43,16 @@ function App() {
 
   if (!ready) return <LoadingScreen />;
 
+  if (showChildProgress) {
+    return (
+      <>
+        <ForestBackground />
+        <UpdatePrompt />
+        <ChildProgressScreen onBack={() => setShowChildProgress(false)} />
+      </>
+    );
+  }
+
   return (
     <>
       <ForestBackground />
@@ -54,6 +67,7 @@ function App() {
           devMode={devMode}
           onTitleTap={onTitleTap}
           onSelectLevel={selectLevel}
+          onOpenChildProgress={() => setShowChildProgress(true)}
         />
       )}
 

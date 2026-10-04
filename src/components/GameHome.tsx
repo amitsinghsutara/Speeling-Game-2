@@ -1,6 +1,7 @@
 import { getLevelList, getPuzzleCountForLevel } from '../data/loadContent';
 import { computeLevelStatuses, MAX_STARS_PER_PUZZLE } from '../game/engine';
 import type { PuzzleProgress, PuzzleStars } from '../game/persistence';
+import { soundEffectPlayer } from '../game/soundEffects';
 import { Mascot } from './Mascot';
 import { LevelCard } from './LevelCard';
 import styles from './GameHome.module.css';
@@ -11,6 +12,7 @@ interface GameHomeProps {
   devMode?: boolean;
   onTitleTap?: () => void;
   onSelectLevel: (level: number) => void;
+  onOpenChildProgress: () => void;
 }
 
 export function GameHome({
@@ -19,6 +21,7 @@ export function GameHome({
   devMode = false,
   onTitleTap,
   onSelectLevel,
+  onOpenChildProgress,
 }: GameHomeProps) {
   const levels = getLevelList();
   const puzzleCountByLevel = Object.fromEntries(levels.map((l) => [l.level, getPuzzleCountForLevel(l.level)]));
@@ -61,6 +64,23 @@ export function GameHome({
           })}
         </div>
       </div>
+
+      <button
+        type="button"
+        className={styles.progressButton}
+        onClick={() => {
+          soundEffectPlayer.playClick();
+          onOpenChildProgress();
+        }}
+      >
+        <span className={styles.progressButtonEmoji} aria-hidden="true">
+          👨‍👩‍👧
+        </span>
+        <span className={styles.progressButtonText}>
+          <span className={styles.progressButtonTitle}>Child's Progress</span>
+          <span className={styles.progressButtonSubtitle}>See how your child is progressing</span>
+        </span>
+      </button>
     </div>
   );
 }
