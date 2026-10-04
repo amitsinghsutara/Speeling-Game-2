@@ -43,7 +43,9 @@ function App() {
 
       {state.screen === 'welcome' && <Welcome onPlay={goHome} />}
 
-      {state.screen === 'home' && <GameHome puzzleProgress={state.puzzleProgress} onSelectLevel={selectLevel} />}
+      {state.screen === 'home' && (
+        <GameHome puzzleProgress={state.puzzleProgress} puzzleStars={state.puzzleStars} onSelectLevel={selectLevel} />
+      )}
 
       {state.screen === 'puzzleSelect' && state.levelNumber !== null && (
         <PuzzleSelect
@@ -51,6 +53,7 @@ function App() {
           levelSkill={state.levelSkill}
           puzzles={state.puzzles}
           completedPuzzleNumbers={state.puzzleProgress[state.levelNumber] ?? []}
+          puzzleStars={state.puzzleStars[state.levelNumber] ?? {}}
           onSelectPuzzle={startPuzzle}
           onBack={goHome}
         />

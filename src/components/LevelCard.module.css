@@ -16,6 +16,11 @@
   filter: grayscale(0.25);
 }
 
+.badgeWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
 .badge {
   flex-shrink: 0;
   width: clamp(48px, 10vw, 64px);

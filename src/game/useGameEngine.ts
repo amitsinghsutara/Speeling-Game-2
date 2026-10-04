@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
 import { getPuzzlesForLevel, getLevelList } from '../data/loadContent';
 import { wordAudioPlayer } from './audio';
-import { getFeedbackHint } from './engine';
+import { getFeedbackHint, starsForMistakes } from './engine';
 import { progressStore } from './persistence';
 import { gameReducer, initialGameState } from './gameState';
 
@@ -11,6 +11,7 @@ export function useGameEngine() {
 
   useEffect(() => {
     dispatch({ type: 'SET_PUZZLE_PROGRESS', progress: progressStore.getProgress() });
+    dispatch({ type: 'SET_PUZZLE_STARS', stars: progressStore.getStars() });
   }, []);
 
   const currentQuestion = state.questions[state.questionIndex];
@@ -34,12 +35,14 @@ export function useGameEngine() {
     if (isPuzzleFinishedScreen && state.levelNumber !== null && lastMarkedPuzzleRef.current !== puzzleKey) {
       lastMarkedPuzzleRef.current = puzzleKey;
       progressStore.markPuzzleComplete(state.levelNumber, state.puzzleNumber);
+      progressStore.markPuzzleStars(state.levelNumber, state.puzzleNumber, starsForMistakes(state.puzzleMistakes));
       dispatch({ type: 'SET_PUZZLE_PROGRESS', progress: progressStore.getProgress() });
+      dispatch({ type: 'SET_PUZZLE_STARS', stars: progressStore.getStars() });
     }
     if (!isPuzzleFinishedScreen) {
       lastMarkedPuzzleRef.current = null;
     }
-  }, [state.screen, state.levelNumber, state.puzzleNumber]);
+  }, [state.screen, state.levelNumber, state.puzzleNumber, state.puzzleMistakes]);
 
   const selectLevel = useCallback((level: number) => {
     const levelInfo = getLevelList().find((l) => l.level === level);

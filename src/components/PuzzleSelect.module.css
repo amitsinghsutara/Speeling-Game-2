@@ -112,6 +112,10 @@
   align-items: center;
 }
 
+.nodeCircleWrap {
+  position: relative;
+}
+
 .node {
   width: clamp(56px, 14vw, 72px);
   height: clamp(56px, 14vw, 72px);

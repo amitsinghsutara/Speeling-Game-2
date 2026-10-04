@@ -1,5 +1,5 @@
 import type { AnswerChoice, Question } from '../data/types';
-import type { PuzzleProgress } from './persistence';
+import type { PuzzleProgress, PuzzleStars } from './persistence';
 import { generateChoices, isLevelComplete, type RandomSource } from './engine';
 
 export type GameScreen = 'welcome' | 'home' | 'puzzleSelect' | 'question' | 'puzzleComplete' | 'levelComplete';
@@ -22,7 +22,10 @@ export interface GameState {
   /** Words already tried and rejected for the current question. */
   incorrectWords: string[];
   attempts: number;
+  /** Wrong answers given across the whole current puzzle attempt (resets per puzzle, not per question). */
+  puzzleMistakes: number;
   puzzleProgress: PuzzleProgress;
+  puzzleStars: PuzzleStars;
 }
 
 export const initialGameState: GameState = {
@@ -38,11 +41,14 @@ export const initialGameState: GameState = {
   status: 'unanswered',
   incorrectWords: [],
   attempts: 0,
+  puzzleMistakes: 0,
   puzzleProgress: {},
+  puzzleStars: {},
 };
 
 export type GameAction =
   | { type: 'SET_PUZZLE_PROGRESS'; progress: PuzzleProgress }
+  | { type: 'SET_PUZZLE_STARS'; stars: PuzzleStars }
   | { type: 'SELECT_LEVEL'; level: number; skill: string; puzzles: Question[][] }
   | { type: 'START_PUZZLE'; puzzleNumber: number; random?: RandomSource }
   | { type: 'SELECT_ANSWER'; word: string }
@@ -66,6 +72,7 @@ function loadPuzzle(state: GameState, puzzleNumber: number, random: RandomSource
     status: 'unanswered',
     incorrectWords: [],
     attempts: 0,
+    puzzleMistakes: 0,
   };
 }
 
@@ -73,6 +80,9 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case 'SET_PUZZLE_PROGRESS':
       return { ...state, puzzleProgress: action.progress };
+
+    case 'SET_PUZZLE_STARS':
+      return { ...state, puzzleStars: action.stars };
 
     case 'SELECT_LEVEL': {
       if (action.puzzles.length === 0) return state;
@@ -89,6 +99,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         status: 'unanswered',
         incorrectWords: [],
         attempts: 0,
+        puzzleMistakes: 0,
       };
     }
 
@@ -108,6 +119,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         selectedWord: action.word,
         status: wasCorrect ? 'correct' : 'incorrect',
         attempts: state.attempts + 1,
+        puzzleMistakes: wasCorrect ? state.puzzleMistakes : state.puzzleMistakes + 1,
         incorrectWords: wasCorrect
           ? state.incorrectWords
           : [...new Set([...state.incorrectWords, action.word])],
@@ -152,10 +164,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         status: 'unanswered',
         incorrectWords: [],
         attempts: 0,
+        puzzleMistakes: 0,
       };
 
     case 'GO_HOME':
-      return { ...initialGameState, screen: 'home', puzzleProgress: state.puzzleProgress };
+      return { ...initialGameState, screen: 'home', puzzleProgress: state.puzzleProgress, puzzleStars: state.puzzleStars };
 
     default:
       return state;

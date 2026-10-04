@@ -134,6 +134,21 @@ export function isPuzzleUnlocked(puzzleNumber: number, completedPuzzleNumbers: n
   return completedPuzzleNumbers.includes(puzzleNumber - 1);
 }
 
+/** Maximum star rating a single puzzle clear can earn. */
+export const MAX_STARS_PER_PUZZLE = 3;
+
+/**
+ * Star rating (1-3) for a puzzle clear, based on how many wrong answers were
+ * given across the whole puzzle: a flawless run earns 3 stars, a few slips
+ * still earn 2, and anything rockier earns 1 (completing always earns at
+ * least 1 — there's no 0-star outcome).
+ */
+export function starsForMistakes(mistakes: number): number {
+  if (mistakes <= 0) return 3;
+  if (mistakes <= 3) return 2;
+  return 1;
+}
+
 export type LevelStatus = 'locked' | 'available' | 'completed';
 
 /**

@@ -1,7 +1,8 @@
 import type { Question } from '../data/types';
-import { isPuzzleUnlocked } from '../game/engine';
+import { isPuzzleUnlocked, MAX_STARS_PER_PUZZLE } from '../game/engine';
 import { soundEffectPlayer } from '../game/soundEffects';
 import { Mascot } from './Mascot';
+import { StarBadge } from './StarBadge';
 import styles from './PuzzleSelect.module.css';
 
 interface PuzzleSelectProps {
@@ -9,6 +10,7 @@ interface PuzzleSelectProps {
   levelSkill: string;
   puzzles: Question[][];
   completedPuzzleNumbers: number[];
+  puzzleStars: Record<number, number>;
   onSelectPuzzle: (puzzleNumber: number) => void;
   onBack: () => void;
 }
@@ -25,40 +27,44 @@ interface PuzzleNodeProps {
   puzzleNumber: number;
   wordCount: number;
   status: PuzzleNodeStatus;
+  stars: number;
   isLast: boolean;
   onSelect: () => void;
 }
 
-function PuzzleNode({ puzzleNumber, wordCount, status, isLast, onSelect }: PuzzleNodeProps) {
+function PuzzleNode({ puzzleNumber, wordCount, status, stars, isLast, onSelect }: PuzzleNodeProps) {
   const locked = status === 'locked';
 
   return (
     <div className={styles.nodeRow}>
       <div className={styles.nodeColumn}>
-        <button
-          type="button"
-          className={`${styles.node} ${styles[status]}`}
-          onClick={() => {
-            soundEffectPlayer.playClick();
-            onSelect();
-          }}
-          disabled={locked}
-          aria-label={
-            locked
-              ? `Puzzle ${puzzleNumber}, locked`
-              : status === 'completed'
-                ? `Puzzle ${puzzleNumber}, completed, play again`
-                : `Puzzle ${puzzleNumber}, start`
-          }
-        >
-          {status === 'completed' ? (
-            <span aria-hidden="true">✓</span>
-          ) : locked ? (
-            <LockIcon />
-          ) : (
-            <span aria-hidden="true">{puzzleNumber}</span>
-          )}
-        </button>
+        <div className={styles.nodeCircleWrap}>
+          {status === 'completed' && <StarBadge earned={stars} max={MAX_STARS_PER_PUZZLE} />}
+          <button
+            type="button"
+            className={`${styles.node} ${styles[status]}`}
+            onClick={() => {
+              soundEffectPlayer.playClick();
+              onSelect();
+            }}
+            disabled={locked}
+            aria-label={
+              locked
+                ? `Puzzle ${puzzleNumber}, locked`
+                : status === 'completed'
+                  ? `Puzzle ${puzzleNumber}, completed, play again`
+                  : `Puzzle ${puzzleNumber}, start`
+            }
+          >
+            {status === 'completed' ? (
+              <span aria-hidden="true">✓</span>
+            ) : locked ? (
+              <LockIcon />
+            ) : (
+              <span aria-hidden="true">{puzzleNumber}</span>
+            )}
+          </button>
+        </div>
         {!isLast && <div className={`${styles.connector} ${status === 'completed' ? styles.connectorDone : ''}`} />}
       </div>
 
@@ -84,6 +90,7 @@ export function PuzzleSelect({
   levelSkill,
   puzzles,
   completedPuzzleNumbers,
+  puzzleStars,
   onSelectPuzzle,
   onBack,
 }: PuzzleSelectProps) {
@@ -130,6 +137,7 @@ export function PuzzleSelect({
                 puzzleNumber={puzzleNumber}
                 wordCount={puzzle.length}
                 status={statusFor(puzzleNumber, completedPuzzleNumbers)}
+                stars={puzzleStars[puzzleNumber] ?? 0}
                 isLast={index === puzzles.length - 1}
                 onSelect={() => onSelectPuzzle(puzzleNumber)}
               />

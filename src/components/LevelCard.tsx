@@ -1,6 +1,7 @@
 import type { LevelInfo } from '../data/types';
 import type { LevelStatus } from '../game/engine';
 import { GameButton } from './GameButton';
+import { StarBadge } from './StarBadge';
 import styles from './LevelCard.module.css';
 
 export type { LevelStatus };
@@ -8,15 +9,20 @@ export type { LevelStatus };
 interface LevelCardProps {
   level: LevelInfo;
   status: LevelStatus;
+  starsEarned: number;
+  maxStars: number;
   onStart: (level: number) => void;
 }
 
-export function LevelCard({ level, status, onStart }: LevelCardProps) {
+export function LevelCard({ level, status, starsEarned, maxStars, onStart }: LevelCardProps) {
   const locked = status === 'locked';
 
   return (
     <div className={`${styles.card} ${locked ? styles.locked : ''}`}>
-      <div className={styles.badge}>{level.level}</div>
+      <div className={styles.badgeWrap}>
+        {!locked && <StarBadge earned={starsEarned} max={maxStars} />}
+        <div className={styles.badge}>{level.level}</div>
+      </div>
 
       <div className={styles.body}>
         <p className={styles.title}>
