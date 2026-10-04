@@ -184,6 +184,8 @@ npm run deploy   # build, then wrangler pages deploy → Cloudflare Pages
 
 The build output (`dist/`) is a fully static, installable PWA — it can also be deployed to any static host, or wrapped in a native shell (as it already is for Android, via the `window.Android` bridge mentioned above).
 
+**Automatic deploys:** `.github/workflows/deploy.yml` builds and deploys on every push to `main` (production) and `develop` (preview, published at `develop.forest-spelling-adventure.pages.dev`). It requires two repo secrets — `CLOUDFLARE_API_TOKEN` (a token with Cloudflare Pages edit permission) and `CLOUDFLARE_ACCOUNT_ID` — set under **Settings → Secrets and variables → Actions**.
+
 ## What this architecture already gives you
 
 Because game rules, state transitions, content, persistence, and audio are each isolated behind small interfaces, this codebase is set up to support a fair amount of growth without a rewrite:
