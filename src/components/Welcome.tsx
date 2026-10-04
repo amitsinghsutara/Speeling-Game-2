@@ -11,7 +11,7 @@ interface WelcomeProps {
 export function Welcome({ onPlay }: WelcomeProps) {
   return (
     <div className={styles.screen}>
-      <Stars count={3} />
+      <Stars total={3} />
 
       <div className={styles.titleBoard}>
         <h1 className={styles.title}>Forest Spelling Adventure</h1>
