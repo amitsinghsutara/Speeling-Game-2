@@ -9,12 +9,23 @@ interface LevelCompleteProps {
   levelNumber: number;
   skill: string;
   wordCount: number;
+  starsEarned: number;
+  maxStars: number;
   hasNextLevel: boolean;
   onHome: () => void;
   onNextLevel: () => void;
 }
 
-export function LevelComplete({ levelNumber, skill, wordCount, hasNextLevel, onHome, onNextLevel }: LevelCompleteProps) {
+export function LevelComplete({
+  levelNumber,
+  skill,
+  wordCount,
+  starsEarned,
+  maxStars,
+  hasNextLevel,
+  onHome,
+  onNextLevel,
+}: LevelCompleteProps) {
   return (
     <div className={styles.screen}>
       <Confetti active pieceCount={28} />
@@ -23,7 +34,7 @@ export function LevelComplete({ levelNumber, skill, wordCount, hasNextLevel, onH
         🎉
       </p>
 
-      <Stars count={3} />
+      <Stars earned={starsEarned} total={maxStars} />
 
       <Mascot mood="excited" className={styles.mascot} />
 

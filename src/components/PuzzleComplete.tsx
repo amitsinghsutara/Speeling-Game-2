@@ -7,17 +7,26 @@ import styles from './PuzzleComplete.module.css';
 interface PuzzleCompleteProps {
   puzzleNumber: number;
   totalPuzzles: number;
+  starsEarned: number;
+  maxStars: number;
   onPuzzleMap: () => void;
   onNextPuzzle: () => void;
 }
 
 /** Lighter, quicker celebration shown between puzzles (level-complete is the bigger payoff). */
-export function PuzzleComplete({ puzzleNumber, totalPuzzles, onPuzzleMap, onNextPuzzle }: PuzzleCompleteProps) {
+export function PuzzleComplete({
+  puzzleNumber,
+  totalPuzzles,
+  starsEarned,
+  maxStars,
+  onPuzzleMap,
+  onNextPuzzle,
+}: PuzzleCompleteProps) {
   return (
     <div className={styles.screen}>
       <Confetti active pieceCount={14} />
 
-      <Stars count={2} />
+      <Stars earned={starsEarned} total={maxStars} />
 
       <Mascot mood="excited" className={styles.mascot} />
 

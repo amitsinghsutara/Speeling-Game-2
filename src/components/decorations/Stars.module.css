@@ -7,8 +7,17 @@
 .star {
   width: clamp(28px, 6vw, 48px);
   height: clamp(28px, 6vw, 48px);
+  stroke-width: 0.6;
+}
+
+.filled {
   fill: var(--star-yellow, #ffe08a);
   stroke: var(--sun-yellow, #ffd35c);
-  stroke-width: 0.6;
   animation: star-twinkle 1.4s ease-in-out infinite;
+}
+
+.empty {
+  fill: transparent;
+  stroke: var(--panel-border, #c9bb9d);
+  opacity: 0.6;
 }

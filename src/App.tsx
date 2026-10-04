@@ -1,5 +1,6 @@
 import { getLevelList } from './data/loadContent';
 import { useGameEngine } from './game/useGameEngine';
+import { MAX_STARS_PER_PUZZLE, starsForMistakes } from './game/engine';
 import { usePwa } from './pwa/PwaProvider';
 import { useAppReady } from './pwa/useAppReady';
 import { ForestBackground } from './components/decorations/ForestBackground';
@@ -33,6 +34,7 @@ function App() {
   const levels = getLevelList();
   const hasNextLevel = state.levelNumber !== null && levels.some((l) => l.level === state.levelNumber! + 1);
   const totalWordsInLevel = state.puzzles.reduce((sum, puzzle) => sum + puzzle.length, 0);
+  const starsEarnedForPuzzle = starsForMistakes(state.puzzleMistakes);
 
   if (!ready) return <LoadingScreen />;
 
@@ -82,6 +84,8 @@ function App() {
         <PuzzleComplete
           puzzleNumber={state.puzzleNumber}
           totalPuzzles={state.puzzles.length}
+          starsEarned={starsEarnedForPuzzle}
+          maxStars={MAX_STARS_PER_PUZZLE}
           onPuzzleMap={backToPuzzleSelect}
           onNextPuzzle={nextPuzzle}
         />
@@ -92,6 +96,8 @@ function App() {
           levelNumber={state.levelNumber}
           skill={state.levelSkill}
           wordCount={totalWordsInLevel}
+          starsEarned={starsEarnedForPuzzle}
+          maxStars={MAX_STARS_PER_PUZZLE}
           hasNextLevel={hasNextLevel}
           onHome={goHome}
           onNextLevel={() => selectLevel(state.levelNumber! + 1)}
