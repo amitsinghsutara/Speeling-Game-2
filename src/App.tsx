@@ -1,5 +1,6 @@
 import { getLevelList } from './data/loadContent';
 import { useGameEngine } from './game/useGameEngine';
+import { useDevMode } from './game/useDevMode';
 import { MAX_STARS_PER_PUZZLE, starsForMistakes } from './game/engine';
 import { usePwa } from './pwa/PwaProvider';
 import { useAppReady } from './pwa/useAppReady';
@@ -30,6 +31,7 @@ function App() {
 
   const { offlineReady } = usePwa();
   const ready = useAppReady(offlineReady);
+  const { enabled: devMode, registerTap: onTitleTap } = useDevMode();
 
   const levels = getLevelList();
   const hasNextLevel = state.levelNumber !== null && levels.some((l) => l.level === state.levelNumber! + 1);
@@ -46,7 +48,13 @@ function App() {
       {state.screen === 'welcome' && <Welcome onPlay={goHome} />}
 
       {state.screen === 'home' && (
-        <GameHome puzzleProgress={state.puzzleProgress} puzzleStars={state.puzzleStars} onSelectLevel={selectLevel} />
+        <GameHome
+          puzzleProgress={state.puzzleProgress}
+          puzzleStars={state.puzzleStars}
+          devMode={devMode}
+          onTitleTap={onTitleTap}
+          onSelectLevel={selectLevel}
+        />
       )}
 
       {state.screen === 'puzzleSelect' && state.levelNumber !== null && (
@@ -56,6 +64,7 @@ function App() {
           puzzles={state.puzzles}
           completedPuzzleNumbers={state.puzzleProgress[state.levelNumber] ?? []}
           puzzleStars={state.puzzleStars[state.levelNumber] ?? {}}
+          devMode={devMode}
           onSelectPuzzle={startPuzzle}
           onBack={goHome}
         />

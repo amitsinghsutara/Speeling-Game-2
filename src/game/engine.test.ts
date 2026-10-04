@@ -207,6 +207,10 @@ describe('isPuzzleUnlocked', () => {
     expect(isPuzzleUnlocked(3, [1])).toBe(false);
     expect(isPuzzleUnlocked(3, [1, 2])).toBe(true);
   });
+
+  it('dev mode unlocks every puzzle regardless of completion', () => {
+    expect(isPuzzleUnlocked(5, [], true)).toBe(true);
+  });
 });
 
 describe('computeLevelStatuses', () => {
@@ -232,5 +236,12 @@ describe('computeLevelStatuses', () => {
   it('marks a level completed only once all of its puzzles are done', () => {
     const statuses = computeLevelStatuses([1], { 1: [1, 2, 3, 4, 5] }, { 1: 5 });
     expect(statuses.get(1)).toBe('completed');
+  });
+
+  it('dev mode makes every otherwise-locked level available', () => {
+    const statuses = computeLevelStatuses([1, 2, 3], {}, { 1: 5, 2: 5, 3: 5 }, true);
+    expect(statuses.get(1)).toBe('available');
+    expect(statuses.get(2)).toBe('available');
+    expect(statuses.get(3)).toBe('available');
   });
 });

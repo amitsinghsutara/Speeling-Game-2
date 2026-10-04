@@ -8,22 +8,34 @@ import styles from './GameHome.module.css';
 interface GameHomeProps {
   puzzleProgress: PuzzleProgress;
   puzzleStars: PuzzleStars;
+  devMode?: boolean;
+  onTitleTap?: () => void;
   onSelectLevel: (level: number) => void;
 }
 
-export function GameHome({ puzzleProgress, puzzleStars, onSelectLevel }: GameHomeProps) {
+export function GameHome({
+  puzzleProgress,
+  puzzleStars,
+  devMode = false,
+  onTitleTap,
+  onSelectLevel,
+}: GameHomeProps) {
   const levels = getLevelList();
   const puzzleCountByLevel = Object.fromEntries(levels.map((l) => [l.level, getPuzzleCountForLevel(l.level)]));
   const statuses = computeLevelStatuses(
     levels.map((l) => l.level),
     puzzleProgress,
     puzzleCountByLevel,
+    devMode,
   );
 
   return (
     <div className={styles.screen}>
       <div className={styles.titleBoard}>
-        <h1 className={styles.title}>Forest Spelling Adventure</h1>
+        <h1 className={styles.title} onClick={onTitleTap}>
+          Forest Spelling Adventure
+        </h1>
+        {devMode && <p className={styles.devBadge}>DEV MODE — all levels unlocked</p>}
       </div>
 
       <Mascot mood="happy" className={styles.mascot} />

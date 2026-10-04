@@ -128,8 +128,17 @@ export function chunkIntoPuzzles<T>(items: T[], puzzleCount: number = DEFAULT_PU
   return puzzles;
 }
 
-/** Puzzle 1 is always unlocked; puzzle N unlocks once puzzle N-1 is complete. */
-export function isPuzzleUnlocked(puzzleNumber: number, completedPuzzleNumbers: number[]): boolean {
+/**
+ * Puzzle 1 is always unlocked; puzzle N unlocks once puzzle N-1 is complete.
+ * When `devMode` is true every puzzle is treated as unlocked, so testers can
+ * jump straight to any puzzle without playing through earlier ones.
+ */
+export function isPuzzleUnlocked(
+  puzzleNumber: number,
+  completedPuzzleNumbers: number[],
+  devMode = false,
+): boolean {
+  if (devMode) return true;
   if (puzzleNumber <= 1) return true;
   return completedPuzzleNumbers.includes(puzzleNumber - 1);
 }
@@ -155,12 +164,14 @@ export type LevelStatus = 'locked' | 'available' | 'completed';
  * Resolves the lock/available/completed status of every level, given how
  * many puzzles have been completed in each and how many puzzles each level
  * contains. Level 1 is always at least available; every later level opens
- * up once the level before it has every puzzle completed.
+ * up once the level before it has every puzzle completed. When `devMode` is
+ * true, no level is ever locked, so testers can reach any level directly.
  */
 export function computeLevelStatuses(
   levelNumbers: number[],
   completedPuzzlesByLevel: Record<number, number[]>,
   puzzleCountByLevel: Record<number, number>,
+  devMode = false,
 ): Map<number, LevelStatus> {
   const statuses = new Map<number, LevelStatus>();
   let previousLevelComplete = true;
@@ -169,7 +180,8 @@ export function computeLevelStatuses(
     const completedCount = completedPuzzlesByLevel[level]?.length ?? 0;
     const puzzleCount = puzzleCountByLevel[level] ?? 0;
     const isComplete = isLevelComplete(completedCount, puzzleCount);
-    const status: LevelStatus = isComplete ? 'completed' : previousLevelComplete ? 'available' : 'locked';
+    const status: LevelStatus =
+      isComplete ? 'completed' : previousLevelComplete || devMode ? 'available' : 'locked';
     statuses.set(level, status);
     previousLevelComplete = isComplete;
   }

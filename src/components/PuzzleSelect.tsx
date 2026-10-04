@@ -11,15 +11,16 @@ interface PuzzleSelectProps {
   puzzles: Question[][];
   completedPuzzleNumbers: number[];
   puzzleStars: Record<number, number>;
+  devMode?: boolean;
   onSelectPuzzle: (puzzleNumber: number) => void;
   onBack: () => void;
 }
 
 type PuzzleNodeStatus = 'locked' | 'available' | 'completed';
 
-function statusFor(puzzleNumber: number, completed: number[]): PuzzleNodeStatus {
+function statusFor(puzzleNumber: number, completed: number[], devMode: boolean): PuzzleNodeStatus {
   if (completed.includes(puzzleNumber)) return 'completed';
-  if (isPuzzleUnlocked(puzzleNumber, completed)) return 'available';
+  if (isPuzzleUnlocked(puzzleNumber, completed, devMode)) return 'available';
   return 'locked';
 }
 
@@ -91,6 +92,7 @@ export function PuzzleSelect({
   puzzles,
   completedPuzzleNumbers,
   puzzleStars,
+  devMode = false,
   onSelectPuzzle,
   onBack,
 }: PuzzleSelectProps) {
@@ -136,7 +138,7 @@ export function PuzzleSelect({
                 key={puzzleNumber}
                 puzzleNumber={puzzleNumber}
                 wordCount={puzzle.length}
-                status={statusFor(puzzleNumber, completedPuzzleNumbers)}
+                status={statusFor(puzzleNumber, completedPuzzleNumbers, devMode)}
                 stars={puzzleStars[puzzleNumber] ?? 0}
                 isLast={index === puzzles.length - 1}
                 onSelect={() => onSelectPuzzle(puzzleNumber)}
