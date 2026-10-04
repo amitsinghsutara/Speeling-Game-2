@@ -10,6 +10,7 @@ Live concepts: **Level → Puzzle → Question**, a research-informed bank of sp
 
 - [How the game works](#how-the-game-works)
 - [The star rating system](#the-star-rating-system)
+- [Dev mode (testing aid)](#dev-mode-testing-aid)
 - [Content model](#content-model)
 - [Architecture](#architecture)
 - [Project structure](#project-structure)
@@ -68,6 +69,15 @@ Each puzzle clear earns **1–3 stars**, based on how many wrong answers (mistak
 
 Star data is stored separately from completion data (`spelling-game:puzzle-stars` vs. `spelling-game:puzzle-progress` in `localStorage`) via `src/game/persistence.ts`, so the lock/unlock logic (which only cares about *completion*) stays untangled from the scoring logic (which cares about *performance*).
 
+## Dev mode (testing aid)
+
+For QA and manual testing, every level and puzzle can be force-unlocked without having to play through the game in order:
+
+- Tap the **"Forest Spelling Adventure"** title on the home screen **7 times within 2.5 seconds** to toggle dev mode on or off. There's no visible button for it — it's a hidden tester/developer convenience, not a player-facing feature.
+- While active, a small **"DEV MODE — all levels unlocked"** badge appears under the title, and every level and puzzle shows as available regardless of actual progress.
+- The toggle is persisted to `localStorage` (`spelling-game:dev-mode` via `src/game/useDevMode.ts`), so it survives a reload.
+- It only ever relaxes the *lock* checks — `isPuzzleUnlocked()` and `computeLevelStatuses()` in `src/game/engine.ts` both take an optional `devMode` flag that short-circuits them to "unlocked". It never fabricates stars or completion data, so real progress tracking (and the star rating system above) is completely unaffected.
+
 ## Content model
 
 All game content — levels, words, and wrong-answer choices — is authored in a spreadsheet (`data_source.xlsx`) with three sheets:
@@ -101,10 +111,12 @@ Currently shipped: **10 levels, 200 words**, progressing from CVC short vowels t
 - `src/game/engine.ts` — pure, side-effect-free game rules: shuffling choices, checking answers, puzzle/level lock logic, star scoring, hint lookup. No React, no storage, no I/O. Fully unit tested (`engine.test.ts`).
 - `src/game/gameState.ts` — the reducer: how game *state* changes in response to *actions*. Also pure and unit tested (`gameState.test.ts`).
 - `src/game/persistence.ts` — the only code that talks to `localStorage` (with an in-memory fallback for private browsing / restricted WebViews). Swappable behind a small interface (`ProgressStore`).
+- `src/game/useDevMode.ts` — the hidden tap-to-toggle dev mode described above. Tracks taps in a rolling window, persists the on/off state to `localStorage`, and is the only thing that ever passes `devMode: true` into `engine.ts`'s lock checks.
 - `src/game/audio.ts` / `src/game/soundEffects.ts` — audio playback abstractions. Components never touch `Audio`/`speechSynthesis`/`AudioContext` directly, only `wordAudioPlayer.playWord()` and `soundEffectPlayer.playClick()`. This is what lets the underlying playback strategy change (see below) without touching any screen component.
 - `src/data/loadContent.ts` — loads, validates, and derives queryable views (levels, puzzles, questions) over the generated content JSON. Cached once per session.
 - `src/components/*` — presentational screens and widgets, each with its own CSS Module. Components receive data and callbacks as props; none of them know about `localStorage`, the reducer, or each other's internals.
 - `src/pwa/*` — offline-readiness and update-prompt plumbing (see below).
+- `src/styles/theme.css` — shared design tokens (colors, fonts, keyframes) plus a couple of small global resets: `-webkit-tap-highlight-color: transparent` (no flash on tap) and `user-select: none` on `body` (the game has no text inputs, so letting a fast tap accidentally select on-screen text only ever felt like a bug).
 
 **Audio strategy** (`audio.ts`): the game doesn't rely on the browser's Web Speech API in production, because Android's embedded WebView often can't actually speak through it even when `window.speechSynthesis` appears to exist. Instead, `npm run gen:audio` pre-generates one MP3 per unique word (via Microsoft Edge's free neural "Read Aloud" voices) into `public/audio/words/`, and the game plays those bundled files — falling back to `speechSynthesis`, and finally to silence, only if a file is missing or playback fails. The same files are precached by the service worker for full offline play.
 
@@ -130,11 +142,13 @@ src/
     gameState.ts                  # Reducer: GameState + GameAction
     useGameEngine.ts               # Wires the reducer to persistence + audio side effects
     persistence.ts                # localStorage-backed progress & star stores
+    useDevMode.ts                  # Hidden tap-to-toggle dev mode (force-unlock all levels/puzzles)
     audio.ts                      # Spoken-word playback (file → speech → silent fallback)
     soundEffects.ts                # UI click sound (Web Audio API)
   components/                     # One screen/widget + its .module.css per file
   pwa/                             # Offline readiness, update prompt, Android bridge
-  styles/theme.css                 # Design tokens (colors, fonts, shared keyframes)
+  styles/theme.css                 # Design tokens (colors, fonts, keyframes) + global resets
+                                   # (tap highlight removed, text selection disabled app-wide)
 ```
 
 ## Getting started

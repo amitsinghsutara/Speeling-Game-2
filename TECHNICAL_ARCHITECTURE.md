@@ -29,6 +29,7 @@ graph TD
 
     subgraph Presentation [React 19 UI Layer]
         UseEngine --> App[App.tsx]
+        DevMode[useDevMode.ts] --> App
         App --> Screens[Welcome / GameHome / PuzzleSelect / QuestionScreen / PuzzleComplete / LevelComplete]
         App --> PWA_UI[LoadingScreen / UpdatePrompt]
     end
@@ -171,8 +172,8 @@ Partitions a list of items into balanced subsets.
 - Calculates `base = Math.floor(length / count)` and `remainder = length % count`.
 - Distributes remainder items 1-by-1 to the earliest puzzles, guaranteeing maximum balance (e.g. 21 items over 5 puzzles become sizes `[5, 4, 4, 4, 4]`).
 
-#### `isPuzzleUnlocked(puzzleNumber: number, completedPuzzleNumbers: number[]): boolean`
-Puzzle 1 is unlocked by default. Any puzzle $N > 1$ is unlocked if and only if puzzle $N - 1$ exists in `completedPuzzleNumbers`.
+#### `isPuzzleUnlocked(puzzleNumber: number, completedPuzzleNumbers: number[], devMode = false): boolean`
+Puzzle 1 is unlocked by default. Any puzzle $N > 1$ is unlocked if and only if puzzle $N - 1$ exists in `completedPuzzleNumbers`. If `devMode` is `true`, always returns `true` regardless of progress (see §9.2, Dev Mode, below).
 
 #### `starsForMistakes(mistakes: number): number`
 Calculates puzzle star performance:
@@ -180,13 +181,13 @@ Calculates puzzle star performance:
 - $1 \text{ to } 3$ mistakes: **2 Stars** (Good effort)
 - $\ge 4$ mistakes: **1 Star** (Completion award; no 0-star state exists)
 
-#### `computeLevelStatuses(levelNumbers, completedPuzzlesByLevel, puzzleCountByLevel): Map<number, LevelStatus>`
+#### `computeLevelStatuses(levelNumbers, completedPuzzlesByLevel, puzzleCountByLevel, devMode = false): Map<number, LevelStatus>`
 Computes each level's status (`'locked'`, `'available'`, or `'completed'`):
 - Evaluates levels in sequential order.
 - Level 1 is always `'available'` unless completed.
 - Level $K$ is `'completed'` if all its puzzles are done.
-- Level $K$ is `'available'` if level $K - 1$ was `'completed'`.
-- Level $K$ is `'locked'` if level $K - 1$ has uncompleted puzzles.
+- Level $K$ is `'available'` if level $K - 1$ was `'completed'`, **or** if `devMode` is `true`.
+- Level $K$ is `'locked'` if level $K - 1$ has uncompleted puzzles and `devMode` is `false`.
 
 ---
 
@@ -339,14 +340,23 @@ Bridges the pure game reducer, persistence, audio engine, and React component li
 - **Action Callbacks**: Returns memoized handlers (`selectLevel`, `startPuzzle`, `selectAnswer`, `nextQuestion`, `nextPuzzle`, `backToPuzzleSelect`, `goHome`, `replayWord`).
 - **Computed Feedback**: Derives `feedbackHint` dynamically when `status === 'incorrect'`.
 
-### 9.2 `src/App.tsx`
+### 9.2 `src/game/useDevMode.ts`
+A standalone hook (used directly by `App.tsx`, independent of `useGameEngine`/`gameReducer`) implementing a hidden QA/testing aid that force-unlocks every level and puzzle.
+- **Trigger**: `GameHome.tsx` wires the hook's `registerTap()` callback to `onClick` on the home screen's `<h1>` title. There is no visible affordance — it's discoverable only by a developer/tester who knows the gesture.
+- **Tap-window algorithm**: `registerTap()` timestamps each call, filters out timestamps older than `TAP_WINDOW_MS` (2500ms), and appends the current call. Once the surviving timestamp count reaches `TAP_THRESHOLD` (7), it clears the buffer and flips `enabled` via `setEnabled(prev => !prev)` — so the same gesture toggles dev mode both on and off.
+- **Persistence**: `enabled` is mirrored to `localStorage` under `spelling-game:dev-mode` (`'1'` or removed) on every change, via a `useEffect`, so the flag survives a page reload. Reads/writes are wrapped in `try/catch`, consistent with `persistence.ts`'s resilience to unavailable storage.
+- **Return shape**: `{ enabled: boolean, registerTap: () => void }`.
+- **Propagation**: `App.tsx` passes `enabled` as `devMode` into both `<GameHome>` and `<PuzzleSelect>`, which forward it into `computeLevelStatuses()` / `isPuzzleUnlocked()` (§5) to bypass lock checks. It never touches `puzzleProgress` or `puzzleStars` — completion and star data stay exactly as actually earned, so turning dev mode off instantly restores normal locking with no data loss.
+- **Visual indicator**: while `enabled`, `GameHome.tsx` renders a `DEV MODE — all levels unlocked` badge beneath the title (`styles.devBadge` in `GameHome.module.css`), so it's never silently active without the tester noticing.
+
+### 9.3 `src/App.tsx`
 The root application component.
 - Renders the permanent background (`<ForestBackground />`) and background update listener (`<UpdatePrompt />`).
 - Evaluates `ready` state from `useAppReady(offlineReady)`. If false, renders `<LoadingScreen />`.
 - Evaluates `state.screen` and mounts corresponding views:
   - `'welcome'`: `<Welcome onPlay={goHome} />`
-  - `'home'`: `<GameHome puzzleProgress={state.puzzleProgress} puzzleStars={state.puzzleStars} onSelectLevel={selectLevel} />`
-  - `'puzzleSelect'`: `<PuzzleSelect ... />`
+  - `'home'`: `<GameHome puzzleProgress={state.puzzleProgress} puzzleStars={state.puzzleStars} devMode={devMode} onTitleTap={onTitleTap} onSelectLevel={selectLevel} />` — `devMode`/`onTitleTap` come from `useDevMode()` (§9.2), called separately from `useGameEngine()`.
+  - `'puzzleSelect'`: `<PuzzleSelect devMode={devMode} ... />`
   - `'question'`: `<QuestionScreen ... />`
   - `'puzzleComplete'`: `<PuzzleComplete ... />`
   - `'levelComplete'`: `<LevelComplete ... />`
@@ -394,8 +404,8 @@ All components utilize CSS Modules (`*.module.css`) to enforce scoped styling, a
 | Component | File | Responsibilities & Behavior |
 |---|---|---|
 | **Welcome** | `Welcome.tsx` | Landing screen featuring wood-textured title banner, excited Fern mascot, tagline, and prominent "Play" button. |
-| **GameHome** | `GameHome.tsx` | Level selection view. Aggregates level metadata, calculates earned vs. maximum stars for each level, and lists all level cards. |
-| **PuzzleSelect** | `PuzzleSelect.tsx` | Displays sequential progression path for a level's puzzles. Renders `PuzzleNode` elements connected by dotted trails. Displays checkmarks, locks, or puzzle numbers, accompanied by star badges. |
+| **GameHome** | `GameHome.tsx` | Level selection view. Aggregates level metadata, calculates earned vs. maximum stars for each level, and lists all level cards. The title is also the hidden dev-mode tap target (`onClick={onTitleTap}`); when `devMode` is true, renders a "DEV MODE" badge and forces `computeLevelStatuses()` to treat every level as available. |
+| **PuzzleSelect** | `PuzzleSelect.tsx` | Displays sequential progression path for a level's puzzles. Renders `PuzzleNode` elements connected by dotted trails. Displays checkmarks, locks, or puzzle numbers, accompanied by star badges. Accepts an optional `devMode` prop that forces `isPuzzleUnlocked()` to treat every puzzle as available. |
 | **QuestionScreen** | `QuestionScreen.tsx` | Primary gameplay screen. Renders header, dynamic mascot mood (`thinking`, `excited`, or `encouraging`), prompt button, 2x2 answer grid, feedback panel, and confetti. Uses an auto-scroll ref to bring feedback into view on small screens. |
 | **AnswerGrid** | `AnswerGrid.tsx` | 2x2 grid container. Maps choices through `resolveState` to set individual button states: `'idle'`, `'correct'`, `'wrong'`, `'disabled'`, or `'locked'`. |
 | **AnswerButton** | `AnswerButton.tsx` | Individual touch target choice. Applies CSS variables for staggered bounce-in entrance (`--enter-delay`). Plays click audio on tap. Shows checkmark or cross badges when evaluated. |
@@ -430,6 +440,9 @@ The visual design language is built upon vanilla CSS custom properties defined i
 - **Surfaces**: `--panel-cream: #fff7e6`, `--panel-border: #e0b878`.
 - **Pedagogical Feedback**: `--correct: #3fae4a`, `--incorrect: #e25c4f`. (Always supplemented with text and iconography for accessibility).
 
+### Global Resets
+`theme.css`'s `body` rule also carries two small UX resets beyond typography: `-webkit-tap-highlight-color: transparent` (suppresses the mobile tap-flash on buttons) and `user-select: none` / `-webkit-user-select: none` (disables text selection app-wide). The app has no text inputs, so there's nothing a selectable-text affordance would be *for* — without this reset, fast or double taps on labels (level names, puzzle counts, feedback copy) would highlight text and show a native selection/copy UI instead of registering as gameplay taps.
+
 ### Typography & Motion
 - **Display Font**: `Baloo 2` (rounded, friendly geometric display).
 - **Body Font**: `Nunito` (highly legible sans-serif for emerging readers).
@@ -445,7 +458,7 @@ The test suite is built on Vitest and Testing Library running against `jsdom`.
 ```
 src/
 ├── game/
-│   ├── engine.test.ts        # 32 tests: Fisher-Yates, choices, hints, chunking, stars, level locks
+│   ├── engine.test.ts        # 34 tests: Fisher-Yates, choices, hints, chunking, stars, level locks, dev-mode overrides
 │   └── gameState.test.ts     # 17 tests: Reducer transitions, choices generation, scoring & mistakes
 ├── data/
 │   └── loadContent.test.ts   # 9 tests: Normalization, defensive validation, puzzle chunking queries
@@ -482,11 +495,12 @@ src/
 | `src/game/engine.ts` | `getFeedbackHint` | Function | Resolves hint for chosen word on current question. |
 | `src/game/engine.ts` | `calculateProgress` | Function | Clamps and formats current/total progress values. |
 | `src/game/engine.ts` | `chunkIntoPuzzles` | Function | Evenly partitions items across puzzle segments. |
-| `src/game/engine.ts` | `isPuzzleUnlocked` | Function | Evaluates sequential puzzle unlocking rule. |
+| `src/game/engine.ts` | `isPuzzleUnlocked` | Function | Evaluates sequential puzzle unlocking rule; `devMode` param force-unlocks. |
 | `src/game/engine.ts` | `starsForMistakes` | Function | Computes 1–3 star rating from mistake count. |
-| `src/game/engine.ts` | `computeLevelStatuses` | Function | Evaluates lock/available/completed status per level. |
+| `src/game/engine.ts` | `computeLevelStatuses` | Function | Evaluates lock/available/completed status per level; `devMode` param force-unlocks. |
 | `src/game/gameState.ts` | `gameReducer` | Function | Pure reducer handling state transitions and scoring. |
 | `src/game/persistence.ts` | `progressStore` | Singleton | Handles `localStorage` and in-memory persistence. |
+| `src/game/useDevMode.ts` | `useDevMode` | Custom Hook | Hidden tap-to-toggle dev mode; force-unlocks all levels/puzzles, persisted to `localStorage`. |
 | `src/game/audio.ts` | `wordAudioPlayer` | Singleton | Tri-tier audio playback engine (File -> SpeechSynthesis -> Silence). |
 | `src/game/soundEffects.ts` | `soundEffectPlayer` | Singleton | Web Audio API sine wave tap synthesis engine. |
 | `src/game/useGameEngine.ts` | `useGameEngine` | Custom Hook | Connects reducer, audio, persistence, and React lifecycle. |
